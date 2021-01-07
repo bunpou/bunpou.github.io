@@ -1,1 +1,1 @@
-console.log('JS test.')
+console.log('Loaded JS test')
