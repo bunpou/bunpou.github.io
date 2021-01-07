@@ -36,7 +36,7 @@ class AppPage extends LitElement {
     return html`<div>${this.innerHTML}</div>`
   }
 
-  loadPage (URL, defaultPage = './index.html') {
+  loadPage (URL, defaultPage = '/index.html') {
     fetch(URL)
       .then(response => {
         if (response.ok) {
@@ -44,7 +44,7 @@ class AppPage extends LitElement {
             this.innerHTML = html`${unsafeHTML(text)}`
           })
         } else if (URL !== defaultPage) {
-          this.router.navigate(defaultPage)
+          this.router.navigate(defaultPage.slice(1)) // '/home' -> 'home', otherwise error
         } else {
           throw new Error('Page loading error')
         }
