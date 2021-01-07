@@ -10,7 +10,6 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma", "no-cache")
         self.send_header("Expires", "0")
-        self.send_header("X-Content-Type-Options", "nosniff")
 
     def send_error(self, code, message=None):
         if code == 404:

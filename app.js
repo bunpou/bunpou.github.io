@@ -1,16 +1,15 @@
 import { LitElement, html } from 'https://unpkg.com/lit-element@2.1.0/lit-element.js?module'
+import { unsafeHTML } from 'https://unpkg.com/lit-html@1.3.0/directives/unsafe-html.js?module'
 import Navigo from 'https://unpkg.com/navigo@7.1.2/lib/navigo.es.js'
-/* global customElements, DOMParser, fetch */
+/* global customElements, fetch */
 
 class AppPage extends LitElement {
   static get properties () {
-    return { innerHTML: { type: Object } }
+    return { innerHTML: { type: String } }
   }
 
   constructor () {
     super()
-
-    this.parser = new DOMParser()
 
     const root = '/'
     const useHash = true
@@ -19,7 +18,13 @@ class AppPage extends LitElement {
 
     router
       .on('*', () => {
-        const URL = './pages' + document.location.pathname + '/page.html'
+        let pathname = document.location.pathname
+
+        if (pathname === '/') {
+          pathname = '/home'
+        }
+
+        const URL = './pages' + pathname + '/page.html'
         this.loadPage(URL)
       })
       /*
@@ -35,14 +40,13 @@ class AppPage extends LitElement {
   }
 
   render () {
-    return html`<div>${this.innerHTML}</div>` // TODO: Check what render should return to render this correctly
+    return html`<div>${this.innerHTML}</div>`
   }
 
   loadPage (URL) {
     fetch(URL).then(response => {
       response.text().then(text => {
-        this.innerHTML = this.parser.parseFromString(text, 'text/html')
-        console.log(this.innerHTML)
+        this.innerHTML = html`${unsafeHTML(text)}`
       })
     })
   }
