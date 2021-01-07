@@ -1,18 +1,34 @@
 <!DOCTYPE html>
-<html class="reset">
+<html lang="en">
   <head>
-    <script src="redirect.js"></script>
+    <script src="/app/redirect.js"></script>
     <meta charset="utf-8">
     <title>Awesome Japanese</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/app/app.css">
   </head>
-  <body class="app reset">
-    <div class="app__side-button">メニュー</div>
-    <div class="app__page app__page__loading">Loading...</div>
-    <app-page class="app__page app__page__content"></app-page>
-    <div class="app__page app__page__menu"></div>
+  <body>
+    <side-button>メニュー</side-button>
+    <loading-layer>Loading...</loading-layer>
+    <content-layer></content-layer>
+    <menu-layer>
+    <!--
+      <menu-element title="Home"></menu-element>
+      <menu-element title="Searcher" img=""></menu-element>
+      <menu-element title="Reader" img=""></menu-element>
+      <menu-element title="Practice" img=""></menu-element>
+      <menu-element title="Teacher" img="">
+        <topic-searcher></topic-searcher>
+        <topic-item>Verbs</topic-item>
+        <topic-item>Sentence Structure</topic-item>
+        <topic-item>Adjectives</topic-item>
+      </menu-element>
+    -->
+    </menu-layer>
 
-    <script type="module" src="/app.js"></script>
+    <script type="module" src="/app/components/content-layer.js"></script>
+    <script type="module" src="/app/components/loading-layer.js"></script>
+    <script type="module" src="/app/components/menu-layer.js"></script>
+    <script type="module" src="/app/components/side-button.js"></script>
   </body>
 </html>
