@@ -12,43 +12,43 @@ class AppPage extends LitElement {
     super()
 
     const root = '/'
-    const useHash = true
-    const hash = '#'
-    const router = new Navigo(root, useHash, hash)
+    const useHash = false
+    const defaultPage = '/home'
 
-    router
+    this.router = new Navigo(root, useHash)
+
+    this.router
       .on('*', () => {
         let pathname = document.location.pathname
 
         if (pathname === '/') {
-          pathname = '/home'
+          pathname = defaultPage
         }
 
         const URL = './pages' + pathname + '/page.html'
-        this.loadPage(URL)
-      })
-      /*
-      .on('/home', () => {
-        this.innerHTML = html`<div>HOME TEST</div>` // this.loadPage('./pages/home/page.html')
-      })
-      .on('/reader', () => {
-        this.innerHTML = html`<div>READER TEST</div>` // this.loadPage('./pages/reader/page.html')
-      })
-      */
 
-    router.resolve()
+        this.loadPage(URL, defaultPage)
+      })
+      .resolve()
   }
 
   render () {
     return html`<div>${this.innerHTML}</div>`
   }
 
-  loadPage (URL) {
-    fetch(URL).then(response => {
-      response.text().then(text => {
-        this.innerHTML = html`${unsafeHTML(text)}`
+  loadPage (URL, defaultPage = './index.html') {
+    fetch(URL)
+      .then(response => {
+        if (response.ok) {
+          response.text().then(text => {
+            this.innerHTML = html`${unsafeHTML(text)}`
+          })
+        } else if (URL !== defaultPage) {
+          this.router.navigate(defaultPage)
+        } else {
+          throw new Error('Page loading error')
+        }
       })
-    })
   }
 }
 
