@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="/app/redirect.js"></script>
     <meta charset="utf-8">
     <title>Awesome Japanese</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app/app.css">
+    <link rel="stylesheet" href="/app/styles.css">
+    <script type="module" src="/app/redirect.min.js"></script>
+    <script type="module" src="/app/view.min.js"></script>
+    <script type="module" src="/app/router.min.js"></script>
+    <script type="module">
+      /* global View, Router */
+      import { View } from '/app/view.min.js'
+      import { Router } from '/app/router.min.js'
+
+      const routerRoot = '/'
+      const viewPrefix = '/app/pages'
+      const viewSuffix = 'page.comp.min.js'
+      const viewNode = document.getElementById('view-element')
+      const viewDefaultPage = '/home'
+
+      document.router = new Router(routerRoot)
+      document.view = new View(viewPrefix, viewSuffix, viewNode, viewDefaultPage)
+
+      document.router.onnavigation = (URL) => {document.view.update(URL)}
+
+      document.view.update(document.location.pathname)
+    </script>
   </head>
   <body>
-    <side-button>メニュー</side-button>
-    <loading-layer>Loading...</loading-layer>
-    <content-layer></content-layer>
-    <menu-layer>
-    <!--
-      <menu-element title="Home"></menu-element>
-      <menu-element title="Searcher" img=""></menu-element>
-      <menu-element title="Reader" img=""></menu-element>
-      <menu-element title="Practice" img=""></menu-element>
-      <menu-element title="Teacher" img="">
-        <topic-searcher></topic-searcher>
-        <topic-item>Verbs</topic-item>
-        <topic-item>Sentence Structure</topic-item>
-        <topic-item>Adjectives</topic-item>
-      </menu-element>
-    -->
-    </menu-layer>
-
-    <script type="module" src="/app/components/content-layer.js"></script>
-    <script type="module" src="/app/components/loading-layer.js"></script>
-    <script type="module" src="/app/components/menu-layer.js"></script>
-    <script type="module" src="/app/components/side-button.js"></script>
+    <div>Awesome Japanese</div>
+    <div id="view-element"><div>Loading...</div></div>
   </body>
 </html>
+
+<!-- TODO: Write a normal todo. But before
+plan everything: pages design and all the stuff around scripts, words, grammar an so on. So everything
+should be connected and totally planed
+And only then create a giant TODO on what to do -->
