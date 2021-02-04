@@ -16,6 +16,3 @@ export class View
       .catch (error) =>
         console.log(error)
         @update(@defaultPage)
-        # TODO: AUTO MIN JS FROM COFFEE
-        # Also coffee should use watch and
-        # not compile on save
