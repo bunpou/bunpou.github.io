@@ -12,15 +12,9 @@
     <script type="module">
       import { Router } from '/app/@scripts/router.min.js'
 
-      const routerRoot = '/'
-      const viewPrefix = '/app'
-      const viewSuffix = 'page.comp.min.js'
-      const viewNode = document.getElementById('view-element')
-      const viewDefaultPage = '/home'
-
-      document.router = new Router(routerRoot)
       document.views = []
 
+      document.router = new Router('/')
       document.router.onnavigation = (URL) => {
         document.views.forEach((view) => {
           view.update(URL)
