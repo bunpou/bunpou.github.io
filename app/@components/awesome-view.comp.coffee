@@ -11,6 +11,8 @@ class AwesomeView extends AwesomeComponent
     defaultPage = @getAttribute('default')
 
     @view = new View(prefix, suffix, node, defaultPage)
+
+    document.views ?= []
     document.views.push(@view)
 
     @view.update(document.location.pathname)

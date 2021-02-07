@@ -12,9 +12,8 @@
     <script type="module">
       import { Router } from '/app/@scripts/router.min.js'
 
-      document.views = []
-
       document.router = new Router('/')
+
       document.router.onnavigation = (URL) => {
         document.views.forEach((view) => {
           view.update(URL)
