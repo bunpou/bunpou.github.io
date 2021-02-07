@@ -20,15 +20,18 @@
       const viewDefaultPage = '/home'
 
       document.router = new Router(routerRoot)
-      document.view = new View(viewPrefix, viewSuffix, viewNode, viewDefaultPage)
+      document.views = []
 
-      document.router.onnavigation = (URL) => {document.view.update(URL)}
+      document.router.onnavigation = (URL) => {
+        document.views.forEach((view) => {
+          view.update(URL)
+        })
+      }
 
-      document.view.update(document.location.pathname)
     </script>
+    <script type="module" src="/app/page.comp.min.js"></script>
   </head>
   <body>
-    <div>Awesome Japanese</div>
-    <div id="view-element"><div>Loading...</div></div>
+    <app-page></app-page>
   </body>
 </html>
