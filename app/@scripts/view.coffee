@@ -1,5 +1,6 @@
 export class View
   constructor: (@prefix, @suffix, @node, @defaultPage) ->
+    @node = @node.shadow ? @node
 
   update: (URL) ->
     pagePath = @prefix + URL + '/' + @suffix
