@@ -5,8 +5,7 @@ export class Router
     window.addEventListener('popstate', @listener.bind(this))
 
   listener: (event) ->
-    # TODO: document.router -> this. -> @
-    document.router.onnavigation(document.location.pathname)
+    @onnavigation(document.location.pathname)
 
   navigate: (URL) ->
     state = {}
