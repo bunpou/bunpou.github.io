@@ -1,11 +1,11 @@
 # global customElements
 
-import { AwesomeComponent } from '/app/components/awesome.comp.min.js'
+import { AwesomeComponent } from '/app/@components/awesome.comp.min.js'
 
 class CheatSheetsPage extends AwesomeComponent
   link: ->
-    ['/app/styles/theme.min.css',
-    '/app/pages/cheat-sheets/styles/cheat-sheets.min.css']
+    ['/app/@styles/theme.min.css',
+    '/app/cheat-sheets/@styles/cheat-sheets.min.css']
 
   render: ->
     '''

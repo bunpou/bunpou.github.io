@@ -1,11 +1,11 @@
 # global customElements
 
-import { AwesomeComponent } from '/app/components/awesome.comp.min.js'
-import '/app/components/awesome-anchor.comp.min.js'
+import { AwesomeComponent } from '/app/@components/awesome.comp.min.js'
+import '/app/@components/awesome-anchor.comp.min.js'
 
 class HomePage extends AwesomeComponent
   link: ->
-    '/app/pages/home/styles/home.min.css'
+    '/app/home/@styles/home.min.css'
 
   render: ->
     '''
