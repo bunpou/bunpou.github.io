@@ -4,8 +4,7 @@ import { AwesomeComponent } from '/app/@components/awesome.comp.min.js'
 
 class CheatSheetsPage extends AwesomeComponent
   link: ->
-    ['/app/@styles/theme.min.css',
-    '/app/cheat-sheets/@styles/cheat-sheets.min.css']
+    '/app/cheat-sheets/@styles/cheat-sheets.min.css'
 
   render: ->
     '''
