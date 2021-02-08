@@ -1,6 +1,6 @@
 # global customElements
 
-import { AwesomeComponent } from '/app/@components/awesome.comp.min.js'
+import { AwesomeComponent } from './awesome.comp.min.js'
 
 class AwesomeAnchor extends AwesomeComponent
   render: ->

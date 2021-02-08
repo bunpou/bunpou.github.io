@@ -1,6 +1,6 @@
 # global customElements
 
-import { AwesomeComponent } from '/app/@components/awesome.comp.min.js'
+import { AwesomeComponent } from './awesome.comp.min.js'
 import { View } from '/app/@scripts/view.min.js'
 
 class AwesomeView extends AwesomeComponent
