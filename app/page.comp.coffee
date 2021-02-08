@@ -5,8 +5,8 @@ import './@components/awesome-view.comp.min.js'
 
 class AppPage extends AwesomeComponent
   link: -> [
-    './@styles/theme.min.css',
-    './@styles/app.min.css'
+    '/app/@styles/theme.min.css',
+    '/app/@styles/app.min.css'
   ]
 
   render: ->

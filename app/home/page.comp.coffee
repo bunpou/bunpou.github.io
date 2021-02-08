@@ -5,7 +5,7 @@ import '/app/@components/awesome-anchor.comp.min.js'
 
 class HomePage extends AwesomeComponent
   link: ->
-    './@styles/home.min.css'
+    '/app/home/@styles/home.min.css'
 
   render: ->
     '''
