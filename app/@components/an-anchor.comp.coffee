@@ -2,7 +2,7 @@
 
 import { AwesomeComponent } from './awesome.comp.min.js'
 
-class AwesomeAnchor extends AwesomeComponent
+class AnAnchor extends AwesomeComponent
   render: ->
     '<div>' + @innerHTML + '</div>'
 
@@ -11,5 +11,5 @@ class AwesomeAnchor extends AwesomeComponent
       document.router.navigate(@getAttribute('href'))
     )
 
-export tag = 'awesome-anchor'
-customElements.define(tag, AwesomeAnchor)
+export tag = 'an-anchor'
+customElements.define(tag, AnAnchor)

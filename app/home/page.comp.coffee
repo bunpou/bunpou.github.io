@@ -1,7 +1,7 @@
 # global customElements
 
 import { AwesomeComponent } from '/app/@components/awesome.comp.min.js'
-import '/app/@components/awesome-anchor.comp.min.js'
+import '/app/@components/an-anchor.comp.min.js'
 
 class HomePage extends AwesomeComponent
   link: ->
@@ -11,7 +11,7 @@ class HomePage extends AwesomeComponent
     '''
     <div>Home Page</div>
     <div onclick="document.router.navigate('/reader')">Go to Reader</div>
-    <awesome-anchor href="/reader">Awesome anchor to go to Reader</awesome-anchor>
+    <an-anchor href="/reader">Awesome anchor to go to Reader</a-anchor>
     '''
 
 export tag = 'home-page'
