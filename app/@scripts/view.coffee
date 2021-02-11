@@ -16,4 +16,7 @@ export class View
 
       .catch (error) =>
         console.log(error)
-        @update(@defaultPage)
+        if pagePath != @defaultPage
+          @update(@defaultPage)
+        else
+          console.log('Redirecting on the default page has failed')
