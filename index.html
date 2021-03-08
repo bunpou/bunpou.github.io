@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <title>Awesome Japanese</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/@styles/theme.min.css">
-    <link rel="stylesheet" href="/@styles/index.min.css">
-    <script type="module" src="/@scripts/redirect.min.js"></script>
+    <link rel="stylesheet" href="/styles/theme.min.css">
+    <link rel="stylesheet" href="/styles/index.min.css">
+    <script type="module" src="/scripts/redirect.min.js"></script>
     <script type="module">
-      import { Router } from '/@scripts/router.min.js'
+      import { Router } from '/scripts/router.min.js'
 
       document.router = new Router('/')
 
-      document.router.onnavigation = (URL) => {
-        document.views.forEach((view) => {
-          view.update(URL)
+      document.router.onnavigation = (route) => {
+        document.viewAtoms.forEach((viewAtom) => {
+          viewAtom.update(route)
         })
       }
 
     </script>
-    <script type="module" src="/app/page.comp.min.js"></script>
+    <script type="module" src="/components/pages/p-app.min.js"></script>
   </head>
   <body>
-    <app-page></app-page>
+    <p-app></p-app>
   </body>
 </html>
