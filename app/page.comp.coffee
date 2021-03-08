@@ -1,9 +1,9 @@
 # global customElements
 
 import { AwesomeComponent } from './@components/awesome.comp.min.js'
-import './@components/awesome-view.comp.min.js'
-import './@components/awesome-button.comp.min.js'
-import './@components/awesome-text.comp.min.js'
+import './@components/a-button.comp.min.js'
+import './@components/a-text.comp.min.js'
+import './@components/a-view.comp.min.js'
 
 class AppPage extends AwesomeComponent
   link: -> [
@@ -12,23 +12,23 @@ class AppPage extends AwesomeComponent
 
   render: ->
     '''
-    <awesome-button class="menu-button" accent>
-      <awesome-text h2 reverse-auto-oriented>メニュー</awesome-text>
-    </awesome-button>
-    <!-- TODO: do smth with awesome-text -->
+    <a-button class="menu-button" accent>
+      <a-text h2 reverse-auto-oriented>メニュー</a-text>
+    </a-button>
+    <!-- TODO: do smth with a-text -->
     <div class="layers">
       <!-- TODO: do I really need loading screen?
-      <awesome-loading-screen></awesome-loading-screen>
+      <a-loading-screen></a-loading-screen>
       <div class="loading-layer">
         Loading...
-        <awesome-loading-screen></awesome-loading-screen>
+        <a-loading-screen></a-loading-screen>
       </div>
       -->
       <div class="view-layer">
-        <awesome-view prefix='/app' suffix='page.comp.min.js' default='/home'></awesome-view>
+        <a-view prefix='/app' suffix='page.comp.min.js' default='/home'></a-view>
       </div>
       <div class="overlay-layer">
-        OVERLAY <!-- <awesome-overlay> -->
+        OVERLAY <!-- <an-overlay> -->
       </div>
     </div>
     '''

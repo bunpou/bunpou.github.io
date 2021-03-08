@@ -1,7 +1,7 @@
 # global customElements
 
 import { AwesomeComponent } from '/app/@components/awesome.comp.min.js'
-import '/app/@components/awesome-anchor.comp.min.js'
+import '/app/@components/an-anchor.comp.min.js'
 
 class ReaderPage extends AwesomeComponent
   render: ->

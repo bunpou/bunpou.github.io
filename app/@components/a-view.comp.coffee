@@ -3,7 +3,7 @@
 import { AwesomeComponent } from './awesome.comp.min.js'
 import { View } from '/app/@scripts/view.min.js'
 
-class AwesomeView extends AwesomeComponent
+class AView extends AwesomeComponent
   postConnectedCallback: ->
     prefix = @getAttribute('prefix')
     suffix = @getAttribute('suffix')
@@ -17,5 +17,5 @@ class AwesomeView extends AwesomeComponent
 
     @view.update(document.location.pathname)
 
-export tag = 'awesome-view'
-customElements.define(tag, AwesomeView)
+export tag = 'a-view'
+customElements.define(tag, AView)
