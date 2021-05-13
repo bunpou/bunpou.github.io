@@ -11,8 +11,8 @@
       "Atoms": ["components/atoms/*"],
       "Molecules": ["components/molecules/*"],
       "Organisms": ["components/organisms/*"],
-      "Templates": ["components/templates/*"],
-      "Pages": ["components/pages/*"],
+      "Templates": ["templates/*"],
+      "Pages": ["pages/*"],
     }
   },
   "exclude": [

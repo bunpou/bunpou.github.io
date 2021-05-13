@@ -1,11 +1,40 @@
-const path = require('path');
+const path = require('path')
+const fs = require('fs')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+
+const PATHS = {
+  src: path.resolve(__dirname, 'src'),
+  dist: path.resolve(__dirname, 'dist'),
+}
+
+const getAllFiles = function(dirPath, arrayOfFiles) {
+  arrayOfFiles = arrayOfFiles || []
+
+  contents = fs.readdirSync(dirPath)
+  contents.forEach(function(content) {
+    contentPath = path.join(dirPath, '/', content)
+    isContentDir = fs.statSync(contentPath).isDirectory()
+
+    if (isContentDir) {
+      arrayOfFiles = getAllFiles(contentPath, arrayOfFiles)
+    } else {
+      arrayOfFiles.push(contentPath)
+    }
+  })
+
+  return arrayOfFiles
+}
+
+const PAGES = getAllFiles(PATHS.src).filter(fileName => fileName.endsWith('.pug'))
 
 module.exports = {
+  entry: path.resolve(PATHS.src, 'index.ts'),
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    path: PATHS.dist,
+    clean: true,
   },
-  entry: './src/index.ts',
   module: {
     rules: [
       {
@@ -18,18 +47,50 @@ module.exports = {
             cacheDirectory: true
           }
         }
-      }
+      },
+      {
+        test: /\.pug/,
+        use: [
+          {loader: 'html-loader'},
+          {
+            loader: 'pug-html-loader',
+            options: {
+              basedir: PATHS.src
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'assets/[name].[ext]',
+          },
+        }],
+      },
     ]
   },
   resolve: {
     alias: {
-      Components: path.resolve(__dirname, 'src/components/'),
-      Atoms: path.resolve(__dirname, 'src/components/atoms/'),
-      Molecules: path.resolve(__dirname, 'src/components/molecules/'),
-      Organisms: path.resolve(__dirname, 'src/components/organisms/'),
-      Templates: path.resolve(__dirname, 'src/components/templates/'),
-      Pages: path.resolve(__dirname, 'src/components/pages/'),
+      Components: path.join(PATHS.src, 'components/'),
+      Atoms: path.join(PATHS.src, 'components/atoms/'),
+      Molecules: path.join(PATHS.src, 'components/molecules/'),
+      Organisms: path.join(PATHS.src, 'components/organisms/'),
+      Templates: path.join(PATHS.src, 'templates/'),
+      Pages: path.join(PATHS.src, 'pages/'),
     },
     extensions: ['.tsx', '.ts', '.js'],
-  }
+  },
+  devServer: {
+    contentBase: PATHS.dist,
+    compress: true,
+    port: 8000,
+  },
+  plugins: [
+    ...PAGES.map(page => new HtmlWebpackPlugin ({
+      template: page,
+      filename: page.replace(PATHS.src + '\\', '').replace('.pug', '.html'),
+    }))
+  ]
 };
