@@ -1,0 +1,1 @@
+(()=>{"use strict";HTMLElement,console.log(5)})();
