@@ -1,17 +1,8 @@
 {
-  "name": "Awesome Japanese",
-  "version": "1.0.0",
-  "description": "",
-  "repository": {},
-  "homepage": "",
-  "readme": "",
-  "private": true,
-  "license": "UNLICENSED",
   "scripts": {
     "deploy": "gh-pages -d dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production",
-    "watch": "webpack --watch --mode development",
+    "build":  "webpack --mode production",
+    "watch":  "webpack --watch --mode development",
     "server": "webpack serve --mode development"
   },
   "devDependencies": {
