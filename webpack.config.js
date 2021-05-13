@@ -1,6 +1,11 @@
 const path = require('path')
 const fs = require('fs')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 
 const PATHS = {
@@ -27,11 +32,12 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
 }
 
 const PAGES = getAllFiles(PATHS.src).filter(fileName => fileName.endsWith('.pug'))
+const STYLES = getAllFiles(PATHS.src).filter(fileName => fileName.endsWith('.sass'))
 
 module.exports = {
   entry: path.resolve(PATHS.src, 'index.ts'),
   output: {
-    filename: '[name].js',
+    filename: 'index.js',
     path: PATHS.dist,
     clean: true,
   },
@@ -59,6 +65,19 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Extract and save the final CSS.
+          MiniCssExtractPlugin.loader,
+          // Load the CSS, set url = false to prevent following urls to fonts and images.
+          {loader: "css-loader", options: { url: false, importLoaders: 1 }},
+          // Add browser prefixes and minify CSS.
+          {loader: 'postcss-loader', options: {postcssOptions: {plugins: [autoprefixer(), cssnano()]}}},
+          // Load the SCSS/SASS
+          {loader: 'sass-loader'},
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -89,8 +108,12 @@ module.exports = {
   },
   plugins: [
     ...PAGES.map(page => new HtmlWebpackPlugin ({
+      inject: page.replace(PATHS.src + '\\', '') == 'index.pug' ? true : false, // if root index.html then inject
       template: page,
       filename: page.replace(PATHS.src + '\\', '').replace('.pug', '.html'),
-    }))
+    })),
+    ...STYLES.map(style => new MiniCssExtractPlugin ({
+      filename: style.replace(PATHS.src + '\\', '').replace('.sass', '.css'),
+    })),
   ]
 };
