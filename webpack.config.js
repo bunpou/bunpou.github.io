@@ -72,11 +72,19 @@ module.exports = {
           // Extract and save the final CSS.
           MiniCssExtractPlugin.loader,
           // Load the CSS, set url = false to prevent following urls to fonts and images.
-          {loader: "css-loader", options: { url: false, importLoaders: 1 }},
+          {
+            loader: "css-loader",
+            options: {url: false, importLoaders: 1},
+          },
           // Add browser prefixes and minify CSS.
-          {loader: 'postcss-loader', options: {postcssOptions: {plugins: [autoprefixer(), cssnano()]}}},
+          {
+            loader:'postcss-loader',
+            options: {postcssOptions: {plugins: [autoprefixer(), cssnano()]}},
+          },
           // Load the SCSS/SASS
-          {loader: 'sass-loader'},
+          {
+            loader: 'sass-loader',
+          },
         ],
       },
       {
@@ -108,7 +116,8 @@ module.exports = {
   },
   plugins: [
     ...PAGES.map(page => new HtmlWebpackPlugin ({
-      inject: page.replace(PATHS.src + '\\', '') == 'index.pug' ? true : false, // if root index.html then inject
+      // if page is the root (app) page then inject
+      inject: page.replace(PATHS.src + '\\', '') == 'index.pug' ? true : false,
       template: page,
       filename: page.replace(PATHS.src + '\\', '').replace('.pug', '.html'),
     })),
