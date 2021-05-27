@@ -2,24 +2,28 @@
 
 export default class Router {
   root: string
+  eventName: string
 
   constructor (root: string) {
     this.root = root
-
-    window.addEventListener('popstate', this.listener.bind(this))
-  }
-
-  listener (_: Event) {
-    this.onnavigation(document.location.pathname)
+    this.eventName = 'navigation'
   }
 
   navigate (url: string) {
+    /* Manually triggers navigation event */
     const state: object = {}
     const title: string = ''
 
     history.pushState(state, title, url)
-    this.onnavigation(url)
+
+    window.dispatchEvent(new CustomEvent(this.eventName, {'detail': url}))
   }
 
-  onnavigation (url: string) {}
+  addNavigationListener (callback: (event: Event) => void) {
+    /* Adds listeners for navigation events */
+    window.addEventListener('popstate', (_: Event) => {
+      window.dispatchEvent(new CustomEvent(this.eventName, {'detail': document.location.pathname}))
+    })
+    window.addEventListener(this.eventName, callback.bind(this))
+  }
 }
