@@ -1,29 +1,51 @@
-// global HTMLElement, ShadowRoot
-
-
 export default class Component extends HTMLElement {
   shadow: ShadowRoot
-  postConnectedCallback: Function
+  loadedHTML (locals: object): string {return ''}
+  loadedCSS (): string {return ''}
+
+  postConnectedCallback () {}
 
   connectedCallback () {
     this.shadow = this.attachShadow({mode: 'open'})
 
-    this.updateInnerHTML()
-    this.updateStyles()
+    this.updateHTML()
+    this.updateCSS()
 
-    this.postConnectedCallback?.()
+    this.postConnectedCallback()
   }
 
-  render (): string { return '' }
-  styles (): string { return '' }
+  render (): string {
+    // Post proccessing of loaded html
 
-  updateStyles () {
+    return this.loadedHTML({content: this.innerHTML})
+  }
+
+  styles (): string {
+    // Post proccessing of loaded css
+    
+    return this.loadedCSS()
+  }
+
+  updateCSS () {
+    // Adds css to the component
+    
     let style = document.createElement('style')
-    style.textContent = this.styles?.() || ''
+    style.textContent = this.styles()
     this.shadow.appendChild(style)
   }
 
-  updateInnerHTML () {
-    this.shadow.innerHTML = this.render?.() || ''
+  updateHTML () {
+    // Adds html to the component
+
+    this.shadow.innerHTML = this.render()
+  }
+
+  static load (loadedHTML: Function, loadedCSS: string) {
+    // Decorator for loading html and css in component
+    
+    return function (constructor: Function) {
+      constructor.prototype.loadedHTML = loadedHTML || constructor.prototype.loadedHTML
+      constructor.prototype.loadedCSS = (() => {return loadedCSS}) || constructor.prototype.loadedCSS
+    }
   }
 }
