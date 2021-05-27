@@ -105,6 +105,7 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         include: /(components)/,
         use: [
+          'to-string-loader',
           {
             loader: "css-loader",
             options: {url: false, importLoaders: 1, esModule: false,},
@@ -136,6 +137,7 @@ module.exports = {
       Organisms: path.join(PATHS.src, 'components/organisms/'),
       Templates: path.join(PATHS.src, 'templates/'),
       Pages: path.join(PATHS.src, 'pages/'),
+      Scripts: path.join(PATHS.src, 'scripts/'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -143,6 +145,7 @@ module.exports = {
     contentBase: PATHS.dist,
     compress: true,
     port: 8000,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin ({
