@@ -8,11 +8,12 @@
     "baseUrl": "src",
     "paths": { 
       "Components": ["components/*"],
-      "Atoms": ["components/atoms/*"],
-      "Molecules": ["components/molecules/*"],
-      "Organisms": ["components/organisms/*"],
-      "Templates": ["templates/*"],
-      "Pages": ["pages/*"],
+      "Atoms":      ["components/atoms/*"],
+      "Molecules":  ["components/molecules/*"],
+      "Organisms":  ["components/organisms/*"],
+      "Templates":  ["templates/*"],
+      "Pages":      ["pages/*"],
+      "Scripts":    ["scripts/*"],
     }
   },
   "exclude": [

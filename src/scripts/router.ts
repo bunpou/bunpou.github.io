@@ -11,6 +11,7 @@ export default class Router {
 
   navigate (url: string) {
     /* Manually triggers navigation event */
+
     const state: object = {}
     const title: string = ''
 
@@ -21,6 +22,7 @@ export default class Router {
 
   addNavigationListener (callback: (event: Event) => void) {
     /* Adds listeners for navigation events */
+
     window.addEventListener('popstate', (_: Event) => {
       window.dispatchEvent(new CustomEvent(this.eventName, {'detail': document.location.pathname}))
     })
