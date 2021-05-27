@@ -1,15 +1,18 @@
 /* global window, document */
 
 export default class Router {
-  root: string
-  eventName: string
+  static instance: Router
+  static eventName: string = 'navigation'
 
-  constructor (root: string) {
-    this.root = root
-    this.eventName = 'navigation'
+  constructor () {
+    if (Router.instance) {
+      return Router.instance
+    }
+
+    Router.instance = this;
   }
 
-  navigate (url: string) {
+  static navigate (url: string) {
     /* Manually triggers navigation event */
 
     const state: object = {}
@@ -17,15 +20,15 @@ export default class Router {
 
     history.pushState(state, title, url)
 
-    window.dispatchEvent(new CustomEvent(this.eventName, {'detail': url}))
+    window.dispatchEvent(new CustomEvent(Router.eventName, {'detail': url}))
   }
 
-  addNavigationListener (callback: (event: Event) => void) {
+  static addNavigationListener (callback: (event: Event) => void) {
     /* Adds listeners for navigation events */
 
     window.addEventListener('popstate', (_: Event) => {
-      window.dispatchEvent(new CustomEvent(this.eventName, {'detail': document.location.pathname}))
+      window.dispatchEvent(new CustomEvent(Router.eventName, {'detail': document.location.pathname.slice(1)}))
     })
-    window.addEventListener(this.eventName, callback.bind(this))
+    window.addEventListener(Router.eventName, callback)
   }
 }
