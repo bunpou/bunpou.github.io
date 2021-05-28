@@ -30,10 +30,12 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
   return arrayOfFiles
 }
 
+const COMPONENTS = getAllFiles(path.join(PATHS.src, 'components')).filter(file => file.includes('component.ts') && file != path.join(PATHS.src, 'components/component.ts'))
 
 module.exports = {
   entry: [
     path.resolve(PATHS.src, 'index.ts'),
+    ...COMPONENTS,
   ],
   optimization: {
     splitChunks: {
