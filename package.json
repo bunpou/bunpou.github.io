@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "build": "webpack --mode production",
     "test": "webpack --mode development",
     "watch": "webpack --watch --mode development",
