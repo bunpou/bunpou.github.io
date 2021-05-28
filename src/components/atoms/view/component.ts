@@ -6,6 +6,7 @@ import Router from 'Scripts/router'
 class ViewAtom extends Component {
   content: string
 
+
   postConnectedCallback() {
     this.updateView(document.location.pathname.slice(1))
 
@@ -20,16 +21,20 @@ class ViewAtom extends Component {
   }
 
   updateView (url: string) {
-    this.content = this.loadPage(url)
-    this.updateHTML()
+    const page = this.loadPage(url)
+    if (page) {
+      this.content = page
+      this.updateHTML()
+    }
   }
 
   loadPage (url: string): string {
     url = url || this.getAttribute('default')
+    
     try {
       return require('../../../pages/' + url + '.pug').default
-    } catch (error) {
-      return require('../../../pages/' + this.getAttribute('default') + '.pug').default
+    } catch (_) {
+      Router.navigate(this.getAttribute('default'))
     }
   }
 }
