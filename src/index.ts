@@ -1,2 +1,2 @@
 import 'Scripts/redirect'
-import './global.sass'
+// import './theme.sass'

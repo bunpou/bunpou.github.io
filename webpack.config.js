@@ -101,6 +101,11 @@ module.exports = {
           // Load the SCSS/SASS
           {
             loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: ["src"],
+              },
+            },
           },
         ],
       },
@@ -117,7 +122,14 @@ module.exports = {
             loader: 'postcss-loader',
             options: {postcssOptions: {plugins: [autoprefixer(), cssnano()]}},
           },
-          { loader: 'sass-loader', },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: ["src"],
+              },
+            },
+          },
         ],
       },
       {
