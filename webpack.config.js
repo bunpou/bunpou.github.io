@@ -46,6 +46,7 @@ module.exports = {
   output: {
     filename: 'index.[contenthash].js',
     path: PATHS.dist,
+    publicPath: '/',
     clean: true,
   },
   module: {
@@ -147,7 +148,9 @@ module.exports = {
     contentBase: PATHS.dist,
     compress: true,
     port: 8000,
-    historyApiFallback: true
+    historyApiFallback: {
+      index: '/index.html'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin ({

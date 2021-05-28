@@ -31,7 +31,7 @@ class ViewAtom extends Component {
     url = url || this.getAttribute('default')
     
     try {
-      return require('../../../pages/' + url + '.pug').default
+      return require('../../../pages/' + url + '.pug').default  // TODO relative path somehow to aliases
     } catch (_) {
       Router.navigate(this.getAttribute('default'))
     }
