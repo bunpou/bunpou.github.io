@@ -20,7 +20,6 @@ export default class Router {
     const title: string = ''
 
     history.pushState(state, title, url)
-
     window.dispatchEvent(new CustomEvent(Router.eventName, {detail: url}))
   }
 

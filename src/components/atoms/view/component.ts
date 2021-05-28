@@ -2,18 +2,17 @@ import Component from 'Components/component'
 import Router from 'Scripts/router'
 
 
-@Component.load(null, require('./styles.sass'))
 class ViewAtom extends Component {
   content: string
 
 
   postConnectedCallback() {
-    this.updateView(document.location.pathname.slice(1))
-
     Router.addNavigationListener((e: CustomEvent) => {
       const url = e.detail
       this.updateView(url)
     })
+
+    this.updateView(document.location.pathname.slice(1))
   }
 
   render (): string {
