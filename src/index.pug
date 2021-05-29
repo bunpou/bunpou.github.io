@@ -1,13 +1,15 @@
 doctype html
-html(lang='en' data-theme="light")
+html(lang='en' data-theme='light')
   head
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Bunpou
+    link(rel='icon' type='image/svg+xml' href='./assets/logo.svg')
+    link(rel='alternate icon' href='./assets/logo.ico')
   body
     o-header
-      // logo
+      a-btn(nav='home') #[img(src='./assets/logo.svg' width=64 height=64)]
       m-nav
         a-btn(nav='home') #[a-ja(u='home' o=' ') ホーム]
         a-btn(nav='cheatsheets') #[a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か]

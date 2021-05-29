@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const svgToMiniDataURI = require('mini-svg-data-uri');
 
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
@@ -133,14 +134,23 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpg|gif|ico)$/,
         exclude: /(node_modules|bower_components)/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: 'assets/[name].[ext]',
-          },
-        }],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name].[contenthash][ext]'
+        }
+      },
+      {
+        test: /\.(svg)$/,
+        exclude: /(node_modules|bower_components)/,
+        type: 'asset/inline',
+        generator: {
+          dataUrl: content => {
+            content = content.toString();
+            return svgToMiniDataURI(content);
+          }
+        },
       },
     ]
   },
@@ -168,6 +178,7 @@ module.exports = {
     new HtmlWebpackPlugin ({
       template: path.resolve(PATHS.src, 'index.pug'),
       filename: 'index.html',
+      // favicon: path.resolve(PATHS.src, 'assets/logo.svg'),
     }),
     new HtmlWebpackPlugin ({
       inject: false,
