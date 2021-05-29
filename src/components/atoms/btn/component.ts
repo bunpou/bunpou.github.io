@@ -2,7 +2,7 @@ import Component from 'Components/component'
 import Router from 'Scripts/router'
 
 
-@Component.load(require('./index.pug'), require('./styles.sass'))
+@Component.load(null, require('./styles.sass'))
 class BtnAtom extends Component {
   postConnectedCallback () {
     if (this.hasAttribute('nav')) {

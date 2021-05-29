@@ -6,10 +6,12 @@ html(lang='en' data-theme="light")
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Bunpou
   body
+    o-header
+      // logo
+      m-nav
+        a-btn(nav='home') #[a-ja(u='home' o=' ') ホーム]
+        a-btn(nav='cheatsheets') #[a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か]
+        a-btn(nav='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
+        a-btn(nav='about') #[a-ja(u='about' o=' ') ついて]
+      // theme switcher
     a-view(default='home')
-    a-btn(nav='home') Home
-    a-btn(nav='faq') FAQ
-    a-btn(nav='test') Test
-    a-btn(nav='verbs/bases') Verbs - Bases
-    div #[a-ja か] does not attach to #[a-ja だ] like it does with #[a-ja です]. The only time this is acceptable is when か is used to make subordinate clauses. Therefore, だか is wrong and must be changed to either か or dropped entirely. This means it will always attach straight to nouns and adjectival nouns without the copula intervening
-    div Just add #[a-ja か] to the end and you're done

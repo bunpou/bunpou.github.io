@@ -1,1 +1,7 @@
-span #{content}
+ruby
+  .
+    !{content}
+  if (under)
+    rtc(style='ruby-position: under') #{under}
+  if (over)
+    rt #{over}

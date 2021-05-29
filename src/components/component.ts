@@ -1,6 +1,10 @@
+interface Locals {
+  [key: string]: string
+}
+
 export default class Component extends HTMLElement {
   shadow: ShadowRoot
-  loadedHTML (locals: object): string {return ''}
+  loadedHTML (locals: Locals): string {return `<div>${locals.content}</div>`}
   loadedCSS (): string {return ''}
 
   postConnectedCallback () {}
