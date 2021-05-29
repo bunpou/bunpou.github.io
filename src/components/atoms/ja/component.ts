@@ -11,6 +11,11 @@ class JaAtom extends Component {
       over, o - furigana
       under, u - like furigana but below, mainly used for translations
     
+    Examples:
+      a-ja(under='home' over=' ') ホーム
+      a-ja(u='home' o=' ') ホーム
+      a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か
+    
     TODO:
       1) Syntax parsing for easier writing under and over text
         a-btn(nav='home') #[a-ja(u='home' o=' ') ホーム]
