@@ -16,6 +16,7 @@
       "Pages":      ["pages/*"],
       "Scripts":    ["scripts/*"],
       "Styles":    ["styles/*"],
+      "Assets":    ["assets/*"],
     }
   },
   "exclude": [

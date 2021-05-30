@@ -164,6 +164,7 @@ module.exports = {
       Pages: path.join(PATHS.src, 'pages/'),
       Scripts: path.join(PATHS.src, 'scripts/'),
       Styles: path.join(PATHS.src, 'styles/'),
+      Assets: path.join(PATHS.src, 'assets/'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
