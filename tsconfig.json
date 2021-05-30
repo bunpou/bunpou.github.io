@@ -12,7 +12,7 @@
       "Atoms":      ["components/atoms/*"],
       "Molecules":  ["components/molecules/*"],
       "Organisms":  ["components/organisms/*"],
-      "Templates":  ["templates/*"],
+      "Templates":  ["components/templates/*"],
       "Pages":      ["pages/*"],
       "Scripts":    ["scripts/*"],
       "Styles":    ["styles/*"],

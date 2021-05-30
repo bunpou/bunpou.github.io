@@ -160,7 +160,7 @@ module.exports = {
       Atoms: path.join(PATHS.src, 'components/atoms/'),
       Molecules: path.join(PATHS.src, 'components/molecules/'),
       Organisms: path.join(PATHS.src, 'components/organisms/'),
-      Templates: path.join(PATHS.src, 'templates/'),
+      Templates: path.join(PATHS.src, 'components/templates/'),
       Pages: path.join(PATHS.src, 'pages/'),
       Scripts: path.join(PATHS.src, 'scripts/'),
       Styles: path.join(PATHS.src, 'styles/'),
