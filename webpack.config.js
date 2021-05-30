@@ -104,7 +104,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sassOptions: {
-                includePaths: ["src"],
+                includePaths: ["src/styles"],
               },
             },
           },
@@ -127,7 +127,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sassOptions: {
-                includePaths: ["src"],
+                includePaths: ["src/styles"],
               },
             },
           },
@@ -163,6 +163,7 @@ module.exports = {
       Templates: path.join(PATHS.src, 'templates/'),
       Pages: path.join(PATHS.src, 'pages/'),
       Scripts: path.join(PATHS.src, 'scripts/'),
+      Styles: path.join(PATHS.src, 'styles/'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },

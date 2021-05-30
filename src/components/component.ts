@@ -4,7 +4,7 @@ interface Locals {
 
 export default class Component extends HTMLElement {
   shadow: ShadowRoot
-  loadedHTML (locals: Locals): string {return `<div>${locals.content}</div>`}
+  loadedHTML (locals: Locals): string {return `<div id='content'>${locals.content}</div>`}
   loadedCSS (): string {return ''}
 
   postConnectedCallback () {}
@@ -14,7 +14,7 @@ export default class Component extends HTMLElement {
 
     this.updateHTML()
     this.updateCSS()
-
+    
     this.postConnectedCallback()
   }
 

@@ -15,6 +15,7 @@
       "Templates":  ["templates/*"],
       "Pages":      ["pages/*"],
       "Scripts":    ["scripts/*"],
+      "Styles":    ["styles/*"],
     }
   },
   "exclude": [

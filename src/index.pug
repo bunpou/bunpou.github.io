@@ -9,11 +9,12 @@ html(lang='en' data-theme='light')
     link(rel='alternate icon' href='./assets/logo.ico')
   body
     o-header
-      a-btn(nav='home') #[img(src='./assets/logo.svg' width=64 height=64)]
+      a-btn(nav='home' no-highlight) #[img(src='./assets/logo.svg' width=64 height=64)]
       m-nav
         a-btn(nav='home') #[a-ja(u='home' o=' ') ホーム]
         a-btn(nav='cheatsheets') #[a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か]
-        a-btn(nav='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
+        a-btn(link='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
         a-btn(nav='about') #[a-ja(u='about' o=' ') ついて]
-      // theme switcher
+      a-btn(block) #[a-ja(u='light' o='ひかり') 光]
+      // a-btn #[a-ja(u='dark' o='やみ') 闇]
     a-view(default='home')

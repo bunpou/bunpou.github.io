@@ -1,19 +1,47 @@
-@import theme
-  
 :host
   display: flex
+  flex-direction: column
   justify-content: center
-  align-content: center
-  color: $text-color
-  padding: 10px
+  align-items: center
 
-  div
+  #content
     display: flex
+    flex-direction: column
     justify-content: center
     align-items: center
     user-select: none
+    margin: 10px
   
-  div:hover,
-  div:active
-    cursor: pointer
-  
+    &:hover,
+    &:active
+      cursor: pointer
+
+  #wrapper
+    &::after
+      display: block
+      height: 4px
+      width: 100%
+      content: ""
+      transition: transform .5s cubic-bezier(.785,.135,.15,.86)
+      position: relative
+      bottom: -4px
+      background-color: black
+      transform: scaleX(0)
+
+    &:focus::after,
+    &:hover::after
+      transform: scaleX(1)
+
+:host([active])
+  #wrapper
+    &::after
+      transform: scaleX(1)
+
+
+:host([no-highlight])
+  #wrapper
+    &::after
+      visibility: hidden
+
+:host([block])
+  #content
