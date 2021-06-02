@@ -2,7 +2,7 @@ import Component from 'Components/component'
 
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
-class BtnAtom extends Component {}
+class NavOrganism extends Component {}
 
 
-customElements.define('a-btn', BtnAtom)
+customElements.define('o-nav', NavOrganism)

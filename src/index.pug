@@ -8,14 +8,22 @@ html(lang='en' data-theme='light')
     link(rel='icon' type='image/svg+xml' href='./assets/logo.svg')
     link(rel='alternate icon' href='./assets/logo.ico')
   body
+    //-
+      o-header
+        m-logo
+        m-nav
+          a-btn(nav='home') #[a-ja(u='home' o=' ') ホーム]
+          a-btn(nav='cheatsheets') #[a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か]
+          a-btn(url='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
+          a-btn(nav='about') #[a-ja(u='about' o=' ') ついて]
+        // m-theme-changer
+        a-btn(block) #[a-ja(u='light' o='ひかり') 光]
+        // a-btn #[a-ja(u='dark' o='やみ') 闇]
+      a-view(default='home')
     o-header
-      m-logo
-      m-nav
-        a-btn(nav='home') #[a-ja(u='home' o=' ') ホーム]
-        a-btn(nav='cheatsheets') #[a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か]
-        a-btn(url='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
-        a-btn(nav='about') #[a-ja(u='about' o=' ') ついて]
-      // m-theme-changer
-      a-btn(block) #[a-ja(u='light' o='ひかり') 光]
-      // a-btn #[a-ja(u='dark' o='やみ') 闇]
-    a-view(default='home')
+      o-bar
+      m-search
+      o-nav
+    o-main
+      a-view(default='home')
+
