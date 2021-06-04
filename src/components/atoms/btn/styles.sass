@@ -3,27 +3,19 @@
   flex-direction: column
   justify-content: center
   align-items: center
-
-  #content
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    user-select: none
-    margin: 10px
-  
-    &:hover,
-    &:active
-      cursor: pointer
+  padding: 10px
+  box-sizing: border-box
 
   #wrapper
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
+    height: 100%
+    width: 100%
 
     &::after
-      display: block
+      display: none
       height: 4px
       width: 100%
       content: ""
@@ -35,6 +27,19 @@
     &:focus::after,
     &:hover::after
       transform: scaleX(1)
+    
+    #content
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      user-select: none
+      width: 100%
+      height: 100%
+    
+      &:hover,
+      &:active
+        cursor: pointer
 
 :host([active])
   #wrapper
@@ -42,10 +47,10 @@
       transform: scaleX(1)
 
 
-:host([no-highlight])
+:host([highlight])
   #wrapper
     &::after
-      visibility: hidden
+      display: block
 
 :host([block])
   #content

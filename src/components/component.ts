@@ -16,6 +16,7 @@ export default class Component extends HTMLElement {
     this.updateCSS()
     
     this.postConnectedCallback()
+    this.onAttributeChange()
   }
 
   render (): string {
@@ -51,5 +52,19 @@ export default class Component extends HTMLElement {
       constructor.prototype.loadedHTML = loadedHTML || constructor.prototype.loadedHTML
       constructor.prototype.loadedCSS = (() => {return loadedCSS}) || constructor.prototype.loadedCSS
     }
+  }
+
+  onAttributeChange (): void {}
+
+  addAttributeObserver (callback: () => void) {
+    this.onAttributeChange = callback || this.onAttributeChange
+
+    new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type == "attributes") {
+          this.onAttributeChange()
+        }
+      })
+    }).observe(this, {attributes: true})
   }
 }

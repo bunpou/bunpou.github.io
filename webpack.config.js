@@ -92,7 +92,7 @@ module.exports = {
           // Load the CSS, set url = false to prevent following urls to fonts and images.
           {
             loader: "css-loader",
-            options: {url: false, importLoaders: 1,},
+            options: {importLoaders: 1,},
           },
           // Add browser prefixes and minify CSS.
           {
@@ -117,7 +117,7 @@ module.exports = {
           'to-string-loader',
           {
             loader: "css-loader",
-            options: {url: false, importLoaders: 1, esModule: false,},
+            options: {importLoaders: 1, esModule: false,},
           },
           {
             loader: 'postcss-loader',
@@ -144,7 +144,7 @@ module.exports = {
       {
         test: /\.(svg)$/,
         exclude: /(node_modules|bower_components)/,
-        type: 'asset/inline',
+        type: 'asset',
         generator: {
           dataUrl: content => {
             content = content.toString();
@@ -180,7 +180,6 @@ module.exports = {
     new HtmlWebpackPlugin ({
       template: path.resolve(PATHS.src, 'index.pug'),
       filename: 'index.html',
-      // favicon: path.resolve(PATHS.src, 'assets/logo.svg'),
     }),
     new HtmlWebpackPlugin ({
       inject: false,
