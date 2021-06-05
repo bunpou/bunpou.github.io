@@ -50,8 +50,6 @@ class ViewAtom extends Component {
   }
 
   toAnchor (anchor: string) {
-    console.log(anchor);
-    
     this.shadow.querySelector(`#${anchor}`).scrollIntoView()
   }
 }
