@@ -20,10 +20,22 @@ class ViewAtom extends Component {
   }
 
   updateView (url: string) {
+    let hash = ''
+    if (url.includes('#')) {
+      const hashIndex = url.indexOf('#')
+      hash = url.slice(hashIndex + 1)
+      url = url.slice(0, hashIndex)
+    }
+
     const page = this.loadPage(url)
+
     if (page) {
       this.content = page
       this.updateHTML()
+
+      if (hash) {
+        this.toAnchor(hash)
+      }
     }
   }
 
@@ -35,6 +47,12 @@ class ViewAtom extends Component {
     } catch (_) {
       Router.navigate(this.getAttribute('default'))
     }
+  }
+
+  toAnchor (anchor: string) {
+    console.log(anchor);
+    
+    this.shadow.querySelector(`#${anchor}`).scrollIntoView()
   }
 }
 
