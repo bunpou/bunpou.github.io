@@ -1,6 +1,8 @@
 import Component from 'Components/component'
 import Router from 'Scripts/router'
 
+const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
+
 
 class ViewAtom extends Component {
   content: string
@@ -50,7 +52,7 @@ class ViewAtom extends Component {
   }
 
   toAnchor (anchor: string) {
-    this.shadow.querySelector(`#${anchor}`).scrollIntoView()
+    querySelectorDeep(`#${anchor}`).scrollIntoView()
   }
 }
 
