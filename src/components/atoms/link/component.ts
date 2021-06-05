@@ -6,8 +6,13 @@ import Router from 'Scripts/router'
 class LinkAtom extends Component {
   postConnectedCallback () {
     if (this.hasAttribute('to')) {
-      this.addEventListener('click', () => {
-        Router.navigate(this.getAttribute('to'))
+      const to = this.getAttribute('to')
+      const a = this.shadow.querySelector('a')
+      a.href = to
+
+      this.addEventListener('click', (event) => {
+        Router.navigate(to)
+        event.preventDefault()
       })
     }
   }

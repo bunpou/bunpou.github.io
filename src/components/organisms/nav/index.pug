@@ -1,7 +1,26 @@
-m-nav-item(title='Home')
-m-nav-item(title='Cheatsheets')
-  m-nav-item(title='Verbs')
-    m-nav-item(title='Bases')
-  m-nav-item(title='Adjectives')
-m-nav-item(title='Contribute')
-m-nav-item(title='About')
+//- Better for handwriting
+  div
+    a-link(to='home') #[a-ja(u='home' o=' ') ホーム]
+    a-link #[a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か]
+      a-link #[a-ja(u='verbs' o='') ？]
+        a-link(to='cheatsheets/verbs/bases') #[a-ja(u='bases' o='') ？]
+          a-link(to='cheatsheets/verbs/bases/#a-base') #[a-ja(u='a base' o='') ？]
+          a-link(to='cheatsheets/verbs/bases/#b-base') #[a-ja(u='b base' o='') ？]
+      a-link #[a-ja(u='adjectives' o='') ？]
+    a-link(url='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
+    a-link(to='about') #[a-ja(u='about' o=' ') ついて]
+
+//- Better for generating and working with
+  ul
+    li #[a-link(to='home') #[a-ja(u='home' o=' ') ホーム]]
+    li #[a-link #[a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か]]
+      ul
+        li #[a-link #[a-ja(u='verbs' o='') ？]]
+          ul
+            li #[a-link(to='cheatsheets/verbs/bases') #[a-ja(u='bases' o='') ？]]
+              ul
+                li #[a-link(to='cheatsheets/verbs/bases/#a-base') #[a-ja(u='a base' o='') ？]]
+                li #[a-link(to='cheatsheets/verbs/bases/#b-base') #[a-ja(u='b base' o='') ？]]
+        li #[a-link #[a-ja(u='adjectives' o='') ？]]
+    li #[a-link(url='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]]
+    li #[a-link(to='about') #[a-ja(u='about' o=' ') ついて]]

@@ -84,12 +84,26 @@ module.exports = {
         ],
       },
       {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {importLoaders: 1,},
+          },
+          {
+            loader: 'postcss-loader',
+            options: {postcssOptions: {plugins: [autoprefixer(), cssnano()]}},
+          },
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         exclude: /(node_modules|bower_components|components)/,
         use: [
           // Extract and save the final CSS.
           MiniCssExtractPlugin.loader,
-          // Load the CSS, set url = false to prevent following urls to fonts and images.
+          // Load the CSS
           {
             loader: "css-loader",
             options: {importLoaders: 1,},
