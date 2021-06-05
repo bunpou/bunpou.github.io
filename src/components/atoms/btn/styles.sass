@@ -1,3 +1,6 @@
+@import theme
+
+
 :host
   display: flex
   flex-direction: column
@@ -13,20 +16,6 @@
     align-items: center
     height: 100%
     width: 100%
-
-    &::after
-      display: none
-      height: 4px
-      width: 100%
-      content: ""
-      transition: transform .5s cubic-bezier(.785,.135,.15,.86)
-      position: relative
-      background-color: black
-      transform: scaleX(0)
-
-    &:focus::after,
-    &:hover::after
-      transform: scaleX(1)
     
     #content
       display: flex
@@ -37,20 +26,31 @@
       width: 100%
       height: 100%
     
-      &:hover,
-      &:active
-        cursor: pointer
+:host(:hover),
+:host(:active)
+  cursor: pointer
 
-:host([active])
-  #wrapper
-    &::after
-      transform: scaleX(1)
-
-
-:host([highlight])
+:host([underline])
   #wrapper
     &::after
       display: block
+      height: 4px
+      width: 100%
+      content: ""
+      transition: transform .5s cubic-bezier(.785,.135,.15,.86)
+      position: relative
+      background-color: $primary-color
+      transform: scaleX(0)
+
+    &:hover::after
+      transform: scaleX(1)
+
+:host([underline][active]),
+:host([underline]:active)
+  #wrapper
+    &::after
+      background-color: $accent-color
+      transform: scaleX(1)
 
 :host([block])
   #content
