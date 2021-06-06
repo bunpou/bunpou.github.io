@@ -7,29 +7,19 @@ class JaAtom extends Component {
     Atom is used for showing japanese text
 
     Attributes:
-      content - japanese text
-      over, o - furigana
+      content - innerHTML
       under, u - like furigana but below, mainly used for translations
     
     Examples:
-      a-ja(under='home' over=' ') ホーム
-      a-ja(u='home' o=' ') ホーム
-      a-ja(u='cheatsheets') #[a-ja(o='ひょう') 表]か
-    
-    TODO:
-      1) Syntax parsing for easier writing under and over text
-        a-btn(nav='home') #[a-ja(u='home' o=' ') ホーム]
-        a-btn(nav='home') #[a-ja ホーム_home]
+      a-ja(u='home') ホーム
+      a-ja(u='cheatsheets') 表#[rt ひょう]か]
 
-        a-btn(nav='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
-        a-btn(nav='contribute') #[a-ja 貢献[こうけん]する_contribute]
   */
 
   render (): string {
     return this.loadedHTML({
       content: this.innerHTML,
       under: this.getAttribute('under') || this.getAttribute('u'),
-      over: this.getAttribute('over') || this.getAttribute('o')
     })
   }
 }

@@ -1,7 +1,8 @@
-ruby
-  .
-    !{content}
+ruby#under
+  ruby#over
+    .
+      !{content}
   if (under)
-    rtc(style='ruby-position: under') #{under}
-  if (over)
-    rt #{over}
+    rp 「
+    rt #{under}
+    rp 」
