@@ -10,16 +10,32 @@
     a-link(url='contribute') #[a-ja(u='contribute') #[a-ja(o='こうけん') 貢献]する]
     a-link(to='about') #[a-ja(u='about' o=' ') ついて]
 
-ul
-  li #[a-link(to='home') #[a-ja(u='home') ホーム]]
-  li #[a-link #[a-ja(u='cheatsheets') 表#[rt ひょう]か]]
-    ul
-      li #[a-link #[a-ja(u='verbs') ？]]
-        ul
-          li #[a-link(to='cheatsheets/verbs/bases') #[a-ja(u='bases') ？]]
-            ul
-              li #[a-link(to='cheatsheets/verbs/bases#a-base') #[a-ja(u='a base') ？]]
-              li #[a-link(to='cheatsheets/verbs/bases#b-base') #[a-ja(u='b base') ？]]
-      li #[a-link #[a-ja(u='adjectives') ？]]
-  li #[a-link(url='contribute') #[a-ja(u='contribute') 貢献#[rt こうけん]する]]
-  li #[a-link(to='about') #[a-ja(u='about') ついて]]
+#list
+  m-nav-item(to='home') #[a-ja(u='home') ホーム]
+  m-nav-item #[a-ja(u='cheatsheets') 表#[rt ひょう]か]
+    m-nav-item #[a-ja(u='verbs') 動#[rt どう]詞#[rt し]]
+      m-nav-item(to='cheatsheets/verbs/bases') #[a-ja(u='bases') 活#[rt かつ]用#[rt よう]形#[rt けい]]
+        m-nav-item(to='cheatsheets/verbs/bases#irrealis-form') # #[a-ja(u='irrealis form') 未#[rt み]然#[rt ぜん]形#[rt けい]]
+        m-nav-item(to='cheatsheets/verbs/bases#continuative-form') # #[a-ja(u='continuative form') 連#[rt れん]用#[rt よう]形#[rt けい]]
+      m-nav-item(to='cheatsheets/verbs/ru-verbs') #[a-ja(u='ru-verbs') 一#[rt いち]段#[rt だん]]
+      m-nav-item(to='cheatsheets/verbs/u-verbs') #[a-ja(u='u-verbs') 五#[rt ご]段#[rt だん]]
+    m-nav-item #[a-ja(u='adjectives') 形#[rt けい]容#[rt よう]詞#[rt し]]
+  m-nav-item(to='contribute') #[a-ja(u='contribute') 貢献#[rt こうけん]する]
+  m-nav-item(to='about') #[a-ja(u='about') ついて]
+
+//-
+  ul#main
+    li #[a-link(to='home' block) #[a-ja(u='home') ホーム]]
+    li #[a-link(block) #[a-ja(u='cheatsheets') 表#[rt ひょう]か]]
+      ul
+        li #[a-link(block) #[a-ja(u='verbs') 動#[rt どう]詞#[rt し]]]
+          ul
+            li #[a-link(to='cheatsheets/verbs/bases' block) #[a-ja(u='bases') 活#[rt かつ]用#[rt よう]形#[rt けい]]]
+              ul
+                li #[a-link(to='cheatsheets/verbs/bases#irrealis-form' block) # #[a-ja(u='irrealis form') 未#[rt み]然#[rt ぜん]形#[rt けい]]]
+                li #[a-link(to='cheatsheets/verbs/bases#continuative-form' block) # #[a-ja(u='continuative form') 連#[rt れん]用#[rt よう]形#[rt けい]]]
+            li #[a-link(to='cheatsheets/verbs/ru-verbs' block) #[a-ja(u='ru-verbs') 一#[rt いち]段#[rt だん]]]
+            li #[a-link(to='cheatsheets/verbs/u-verbs' block) #[a-ja(u='u-verbs') 五#[rt ご]段#[rt だん]]]
+        li #[a-link(block) #[a-ja(u='adjectives') 形#[rt けい]容#[rt よう]詞#[rt し]]]
+    li #[a-link(to='contribute' block) #[a-ja(u='contribute') 貢献#[rt こうけん]する]]
+    li #[a-link(to='about' block) #[a-ja(u='about') ついて]]
