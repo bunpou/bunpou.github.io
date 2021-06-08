@@ -21,6 +21,7 @@ class IconAtom extends Component {
 
   postConnectedCallback () {
     this.addAttributeObserver(null)
+    this.onAttributeChange('')
   }
 
   render () {

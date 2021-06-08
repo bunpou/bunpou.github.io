@@ -16,7 +16,6 @@ export default class Component extends HTMLElement {
     this.updateCSS()
     
     this.postConnectedCallback()
-    this.onAttributeChange()
   }
 
   render (): string {
