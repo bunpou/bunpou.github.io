@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const svgToMiniDataURI = require('mini-svg-data-uri');
 
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
@@ -83,15 +84,29 @@ module.exports = {
         ],
       },
       {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {importLoaders: 1,},
+          },
+          {
+            loader: 'postcss-loader',
+            options: {postcssOptions: {plugins: [autoprefixer(), cssnano()]}},
+          },
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         exclude: /(node_modules|bower_components|components)/,
         use: [
           // Extract and save the final CSS.
           MiniCssExtractPlugin.loader,
-          // Load the CSS, set url = false to prevent following urls to fonts and images.
+          // Load the CSS
           {
             loader: "css-loader",
-            options: {url: false, importLoaders: 1,},
+            options: {importLoaders: 1,},
           },
           // Add browser prefixes and minify CSS.
           {
@@ -101,6 +116,11 @@ module.exports = {
           // Load the SCSS/SASS
           {
             loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: ["src/styles"],
+              },
+            },
           },
         ],
       },
@@ -111,24 +131,40 @@ module.exports = {
           'to-string-loader',
           {
             loader: "css-loader",
-            options: {url: false, importLoaders: 1, esModule: false,},
+            options: {importLoaders: 1, esModule: false,},
           },
           {
             loader: 'postcss-loader',
             options: {postcssOptions: {plugins: [autoprefixer(), cssnano()]}},
           },
-          { loader: 'sass-loader', },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: ["src/styles"],
+              },
+            },
+          },
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpg|gif|ico)$/,
         exclude: /(node_modules|bower_components)/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: 'assets/[name].[ext]',
-          },
-        }],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name].[contenthash][ext]'
+        }
+      },
+      {
+        test: /\.(svg)$/,
+        exclude: /(node_modules|bower_components)/,
+        type: 'asset',
+        generator: {
+          dataUrl: content => {
+            content = content.toString();
+            return svgToMiniDataURI(content);
+          }
+        },
       },
     ]
   },
@@ -138,9 +174,11 @@ module.exports = {
       Atoms: path.join(PATHS.src, 'components/atoms/'),
       Molecules: path.join(PATHS.src, 'components/molecules/'),
       Organisms: path.join(PATHS.src, 'components/organisms/'),
-      Templates: path.join(PATHS.src, 'templates/'),
+      Templates: path.join(PATHS.src, 'components/templates/'),
       Pages: path.join(PATHS.src, 'pages/'),
       Scripts: path.join(PATHS.src, 'scripts/'),
+      Styles: path.join(PATHS.src, 'styles/'),
+      Assets: path.join(PATHS.src, 'assets/'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },

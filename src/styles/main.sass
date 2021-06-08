@@ -1,0 +1,46 @@
+@import reset
+@import theme
+@import globals
+@import tools/mixins
+
+
+html,
+body
+  display: flex
+  width: 100%
+
+  font-family: $english-font-family
+  font-size: $english-font-size
+
+  color: $text-color
+  background-color: $background-color
+
+  o-header
+    @include scrollbar
+    overflow-y: scroll
+
+    min-width: 300px
+    max-width: 300px
+    box-sizing: border-box
+
+  o-main
+    @include scrollbar
+
+    flex-grow: 1
+
+body > *
+  height: 100vh
+
+@media screen and (max-width: $media-large)
+  body
+    flex-direction: column
+
+    o-header
+      overflow-y: auto
+      width: 100%
+      min-width: auto
+      max-width: initial
+
+    & > *
+      height: auto
+  

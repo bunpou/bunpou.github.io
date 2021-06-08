@@ -1,6 +1,8 @@
 import Component from 'Components/component'
 import Router from 'Scripts/router'
 
+const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
+
 
 class ViewAtom extends Component {
   content: string
@@ -20,10 +22,22 @@ class ViewAtom extends Component {
   }
 
   updateView (url: string) {
+    let hash = ''
+    if (url.includes('#')) {
+      const hashIndex = url.indexOf('#')
+      hash = url.slice(hashIndex + 1)
+      url = url.slice(0, hashIndex)
+    }
+
     const page = this.loadPage(url)
+
     if (page) {
       this.content = page
       this.updateHTML()
+
+      if (hash) {
+        this.toAnchor(hash)
+      }
     }
   }
 
@@ -34,6 +48,13 @@ class ViewAtom extends Component {
       return require('../../../pages/' + url + '.pug').default  // TODO relative path somehow to aliases
     } catch (_) {
       Router.navigate(this.getAttribute('default'))
+    }
+  }
+
+  toAnchor (anchor: string) {
+    const anchorElement = querySelectorDeep(`#${anchor}`)
+    if (anchorElement !== null) {
+      anchorElement.scrollIntoView()
     }
   }
 }

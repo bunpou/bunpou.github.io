@@ -1,0 +1,29 @@
+@import theme
+@import globals
+
+
+:host
+  display: flex
+  flex-direction: column
+  box-sizing: border-box
+
+  header
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+
+    padding: 0 8px
+    box-sizing: border-box
+
+    o-nav
+      flex-grow: 1
+    
+@media screen and (max-width: $media-large)
+  header
+    o-bar
+      display: block
+  
+  header > *
+    display: none

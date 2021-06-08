@@ -1,2 +1,56 @@
+@import theme
+
+
 :host
-  color: blue
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding: 10px
+  box-sizing: border-box
+
+  #wrapper
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    height: 100%
+    width: 100%
+    
+    #content
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      user-select: none
+      width: 100%
+      height: 100%
+    
+:host(:hover),
+:host(:active)
+  cursor: pointer
+
+:host([underline])
+  #wrapper
+    &::after
+      display: block
+      height: 4px
+      width: 100%
+      content: ""
+      transition: transform .2s cubic-bezier(.785,.135,.15,.86)
+      position: relative
+      background-color: $primary-color
+      transform: scaleX(0)
+
+    &:hover::after
+      transform: scaleX(1)
+
+:host([underline][active]),
+:host([underline]:active)
+  #wrapper
+    &::after
+      background-color: $accent-color
+      transform: scaleX(1)
+
+:host([block])
+  #content
