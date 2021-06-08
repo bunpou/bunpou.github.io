@@ -54,17 +54,21 @@ export default class Component extends HTMLElement {
     }
   }
 
-  onAttributeChange (): void {}
+  onAttributeChange (attribute: string): void {}
 
   addAttributeObserver (callback: () => void) {
     this.onAttributeChange = callback || this.onAttributeChange
+    Component.newAttributeObserver(this, (_: HTMLElement, attribute: string) => this.onAttributeChange(attribute))
+  }
 
-    new MutationObserver((mutations) => {
+  static newAttributeObserver (object: HTMLElement, callback: (object: HTMLElement, attribute: string) => void): MutationObserver {
+    const mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type == "attributes") {
-          this.onAttributeChange()
-        }
+        if (mutation.type == "attributes") callback(object, mutation.attributeName)
       })
-    }).observe(this, {attributes: true})
+    })
+    mutationObserver.observe(object, {attributes: true})
+
+    return mutationObserver
   }
 }

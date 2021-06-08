@@ -1,6 +1,7 @@
 @import themes/light-theme
 @import themes/dark-theme
 
+
 // Basic colors - 60 30 10 % of content
 $primary-color: var(--primary-color)
 $sub-primary-color: var(--sub-primary-color)
@@ -14,6 +15,21 @@ $information-color: var(--information-color)
 
 // Neutral colors
 $text-color: var(--text-color)
+$background-color: var(--background-color)
 $container-text-color: var(--container-text-color)
 $container-border-color: var(--container-border-color)
 $system-icon-color: var(--system-icon-color)
+
+:export
+  primaryColor: $primary-color
+  subPrimaryColor: $sub-primary-color
+  accentColor: $accent-color
+  successColor: $success-color
+  errorColor: $error-color
+  warningColor: $warning-color
+  informationColor: $information-color
+  textColor: $text-color
+  backgroundColor: $background-color
+  containerTextColor: $container-text-color
+  containerBorderColor: $container-border-color
+  systemIconCOlor: $system-icon-color
