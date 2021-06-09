@@ -5,7 +5,7 @@ import Component from 'Components/component'
 class HomeTemplate extends Component {
   render (): string {
     return this.loadedHTML({
-      title: this.getAttribute('title'),
+      header: this.getAttribute('header'),
       info: this.getAttribute('info'),
       exploreButton: this.getAttribute('exploreButton')
     })
