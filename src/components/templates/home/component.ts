@@ -6,7 +6,8 @@ class HomeTemplate extends Component {
   render (): string {
     return this.loadedHTML({
       title: this.getAttribute('title'),
-      info: this.getAttribute('info')
+      info: this.getAttribute('info'),
+      exploreButton: this.getAttribute('exploreButton')
     })
   }
 }
