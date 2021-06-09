@@ -1,8 +1,44 @@
+@use "sass:math"
+  
 @import globals
+@import theme
 
 
-#wrapper
-  padding: $content-padding
+:host
+  display: block
+  width: 100%
+  height: 100%
 
-  #title
-    font-size: 1.5rem // TODO change to globals
+  #wrapper
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 100%
+
+    #title
+      display: flex
+      justify-content: center
+      align-items: center
+      text-align: center
+      background-color: $container-background-color
+      color: $container-text-color
+      padding: calc(min(#{$content-padding}, 40px))
+    
+    #content
+      display: flex
+      flex-direction: column
+      padding: $content-padding
+      width: 100%
+      height: 100%
+      box-sizing: border-box
+
+      & > *
+      margin-bottom: 20px
+      
+      #info
+        display: flex
+        justify-content: center
+        align-items: center
+        text-align: center
+
+        flex-grow: 1
