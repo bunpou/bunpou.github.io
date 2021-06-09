@@ -1,15 +1,16 @@
-@import globals
-  
+@import tools/mixins
+
+
 :host
+  @include ja-font(body)
   width: max-content
-  font-family: $japanese-font-family
-  font-size: $japanese-font-size
 
   ruby
     width: max-content
   
   ruby#under
     ruby-position: under
+    text-transform: lowercase
   
   ruby#over
     ruby-position: over

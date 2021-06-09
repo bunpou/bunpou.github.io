@@ -1,0 +1,35 @@
+@import tools/mixins
+@import globals
+  
+
+// TODO Automate this with for and add all the other attrs
+:host([h1])
+  @include font(h1)
+
+:host([h2])
+  @include font(h2)
+
+:host([h3])
+  @include font(h3)
+
+:host([h4])
+  @include font(h4)
+
+:host([h5])
+  @include font(h5)
+
+:host([h6])
+  @include font(h6)
+
+:host([h6])
+  @include font(h6)
+
+:host([primary-color])
+  color: $primary-color
+
+:host([sub-primary-color])
+  color: $sub-primary-color
+
+:host([accent-color])
+  color: $accent-color
+

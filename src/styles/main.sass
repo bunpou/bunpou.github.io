@@ -8,9 +8,9 @@ html,
 body
   display: flex
   width: 100%
+  height: 100%
 
-  font-family: $english-font-family
-  font-size: $english-font-size
+  @include font(body)
 
   color: $text-color
   background-color: $background-color
@@ -40,7 +40,7 @@ body > *
       width: 100%
       min-width: auto
       max-width: initial
+      min-height: 74px // TODO Make this work without magic number: bar height 64px + bar margin 10px = 74px
 
     & > *
       height: auto
-  

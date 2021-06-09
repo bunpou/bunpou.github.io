@@ -1,4 +1,6 @@
 @import theme
+@import globals
+@import tools/mixins
 
 
 :host
@@ -8,6 +10,8 @@
   align-items: center
   padding: 10px
   box-sizing: border-box
+
+  @include font(button)
 
   #wrapper
     display: flex
@@ -37,7 +41,8 @@
       height: 4px
       width: 100%
       content: ""
-      transition: transform .2s cubic-bezier(.785,.135,.15,.86)
+      transition: $animation-transition
+      transition-property: transform
       position: relative
       background-color: $primary-color
       transform: scaleX(0)
@@ -52,5 +57,23 @@
       background-color: $accent-color
       transform: scaleX(1)
 
-:host([block])
-  #content
+:host([brackets])
+  #wrapper
+    padding: 15px
+    background: linear-gradient($primary-color , $primary-color) bottom right/ 5% 2px, linear-gradient($primary-color, $primary-color) top left/5% 2px, linear-gradient($primary-color, $primary-color) left/ 2px 100%, linear-gradient($primary-color, $primary-color) right / 2px 100%
+    background-repeat: no-repeat
+    transition: $animation-transition
+    transition-property: background
+
+  #wrapper:hover
+    background: linear-gradient($primary-color , $primary-color) bottom right/ 100% 2px, linear-gradient($primary-color, $primary-color) top left/100% 2px, linear-gradient($primary-color, $primary-color) left/ 2px 100%, linear-gradient($primary-color, $primary-color) right / 2px 100%
+    background-repeat: no-repeat
+
+:host([brackets][active]),
+:host([brackets]:active)
+  #wrapper
+    background: linear-gradient($accent-color , $accent-color) bottom right/ 100% 2px, linear-gradient($accent-color, $accent-color) top left/100% 2px, linear-gradient($accent-color, $accent-color) left/ 2px 100%, linear-gradient($accent-color, $accent-color) right / 2px 100%
+    background-repeat: no-repeat
+
+:host([solid])
+  border: 1px solid

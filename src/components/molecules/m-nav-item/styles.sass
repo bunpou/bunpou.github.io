@@ -1,4 +1,5 @@
 @import theme
+@import globals
   
 
 :host
@@ -24,6 +25,9 @@
 
         content: ""
         background-color: $primary-color
+
+        transition: $animation-transition
+        transition-property: width
 
       &:hover::before
         background-color: $accent-color
