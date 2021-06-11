@@ -52,7 +52,7 @@ class ViewAtom extends Component {
   }
 
   toAnchor (anchor: string) {
-    const anchorElement = querySelectorDeep(`#${anchor}`)
+    const anchorElement = querySelectorDeep(`#${anchor}`, this)
     if (anchorElement !== null) {
       anchorElement.scrollIntoView()
     }

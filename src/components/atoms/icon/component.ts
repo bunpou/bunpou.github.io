@@ -22,6 +22,12 @@ class IconAtom extends Component {
   postConnectedCallback () {
     this.addAttributeObserver(null)
     this.onAttributeChange('')
+
+    Component.newAttributeObserver(document.documentElement, (_, attribute) => {
+      if (attribute === 'data-theme') {
+        this.updateFilter()
+      }
+    })
   }
 
   render () {
@@ -32,12 +38,6 @@ class IconAtom extends Component {
     Object.keys(this.icons).forEach((icon: string) => {
       if (this.getAttribute(icon) !== null) {
         this.setIcon(icon)
-        this.updateFilter()
-      }
-    })
-
-    Component.newAttributeObserver(document.documentElement, (_, attribute) => {
-      if (attribute === 'data-theme') {
         this.updateFilter()
       }
     })
