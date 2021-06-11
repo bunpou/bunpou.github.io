@@ -55,7 +55,7 @@ export default class Component extends HTMLElement {
 
   onAttributeChange (attribute: string): void {}
 
-  addAttributeObserver (callback: () => void) {
+  addAttributeObserver (callback: (attribute: string) => void) {
     this.onAttributeChange = callback || this.onAttributeChange
     Component.newAttributeObserver(this, (_: HTMLElement, attribute: string) => this.onAttributeChange(attribute))
   }
@@ -69,5 +69,13 @@ export default class Component extends HTMLElement {
     mutationObserver.observe(object, {attributes: true})
 
     return mutationObserver
+  }
+
+  static connectGlobalAttribute (objectToConnect: HTMLElement, globalAttribute: string) {
+    Component.newAttributeObserver(document.documentElement, (object, attribute) => {
+      if (attribute == `data-${globalAttribute}`) {
+        objectToConnect.setAttribute(globalAttribute, object.getAttribute(attribute))
+      }
+    })
   }
 }

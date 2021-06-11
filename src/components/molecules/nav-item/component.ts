@@ -1,5 +1,7 @@
 import Component from 'Components/component'
 
+const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
+
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class NavItemMolecula extends Component {
@@ -16,6 +18,14 @@ class NavItemMolecula extends Component {
           this.setAttribute('open', '')
         }
       }
+
+      const isLinkToSmth = querySelectorDeep('a-link', this).hasAttribute('to')
+      const isMobile = window.matchMedia('(max-width: 992px)').matches // TODO Remove magic number
+
+      if (isLinkToSmth && isMobile) {
+        document.documentElement.setAttribute('data-menu-open', 'false')
+      }
+      
     })
   }
 
