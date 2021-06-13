@@ -1,9 +1,25 @@
 @import globals
+@import theme
   
 
 :host
-  #content
+  #wrapper
     display: flex
     flex-direction: column
+  
+    #title
+      display: flex
+      justify-content: center
+      align-items: center
+      text-align: center
+      background-color: $container-background-color
+      color: $container-text-color
+      padding: calc(min(#{$content-padding}, 40px))
 
-    padding: $content-padding
+    m-breadcrumbs
+      padding: 20px $content-padding
+
+    #content
+      display: flex
+      flex-direction: column
+      padding: 20px $content-padding

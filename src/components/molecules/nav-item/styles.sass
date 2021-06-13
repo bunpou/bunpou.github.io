@@ -1,3 +1,5 @@
+@use "sass:math"
+  
 @import theme
 @import globals
   
@@ -48,7 +50,8 @@
         width: 100%
         padding: 0 20px
 
-:host([open])
+:host([open]),
+:host([to][active])
   #wrapper
     #accordeon
       display: flex
@@ -57,4 +60,34 @@
   #wrapper
     #header::before
       background-color: $accent-color
+
+:host([anchor])
+  #wrapper
+    #header
+      a-link
+        display: flex
+        justify-content: center
+        align-items: center
+
+        &::before
+          display: flex
+          content: '#'
+          justify-content: center
+          align-items: center
       
+      // x x x x x x x = 100%
+      // background primary background primary background primary background
+      // 3 lines of width x with paddings x
+      @function n($th)
+        @return calc(100% / 7 * #{$th})
+
+      @function stripes($padding-color, $stripe-color)
+        @return linear-gradient(to bottom, $padding-color 0, $padding-color n(1), $stripe-color 0, $stripe-color n(2), $padding-color 0, $padding-color n(3), $stripe-color 0, $stripe-color n(4), $padding-color 0, $padding-color n(5), $stripe-color 0, $stripe-color n(6), $padding-color 0)
+
+      &::before
+        background-image: stripes($background-color, $primary-color)
+      
+      &:hover::before,
+      &:active::before
+        background-image: stripes($background-color, $accent-color)
+        

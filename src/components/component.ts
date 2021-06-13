@@ -7,6 +7,7 @@ export default class Component extends HTMLElement {
   loadedHTML (locals: Locals): string {return `<div id='content'>${locals.content}</div>`}
   loadedCSS (): string {return ''}
 
+
   postConnectedCallback () {}
 
   connectedCallback () {

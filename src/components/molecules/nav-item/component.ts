@@ -11,7 +11,7 @@ class NavItemMolecula extends Component {
     header.addEventListener('click', (_) => {
       const navItems = this.querySelectorAll(':scope > m-nav-item')
 
-      if (navItems.length !== 0) {
+      if (navItems.length !== 0 && this.getAttribute('to') == null) {
         if (this.getAttribute('open') !== null) {
           this.removeAttribute('open')
         } else {

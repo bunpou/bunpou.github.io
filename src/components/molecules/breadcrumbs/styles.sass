@@ -1,0 +1,13 @@
+@import tools/mixins
+  
+  
+#wrapper
+  display: flex
+  @include font('overline')
+
+  div::after
+    content: ">"
+    padding: 0 5px
+
+  div:last-child::after
+    display: none

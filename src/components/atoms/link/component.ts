@@ -8,7 +8,7 @@ class LinkAtom extends Component {
     if (this.hasAttribute('to')) {
       const to = this.getAttribute('to')
       const a = this.shadow.querySelector('a')
-      a.href = to
+      a.href = '/' + to
 
       this.addEventListener('click', (event) => {
         Router.navigate(to)
