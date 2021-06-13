@@ -6,13 +6,19 @@
 
 html,
 body
-  display: flex
   width: 100%
   height: 100%
+
+html
+  display: flex
 
   @include font(body)
 
   color: $text-color
+
+body
+  display: flex
+  justify-content: center
   background-color: $background-color
 
   o-header
@@ -25,11 +31,12 @@ body
 
   o-main
     @include scrollbar
+    overflow-y: scroll
 
     flex-grow: 1
 
-body > *
-  height: 100vh
+  & > *
+    height: 100vh
 
 @media screen and (max-width: $media-large)
   body
@@ -41,6 +48,9 @@ body > *
       min-width: auto
       max-width: initial
       min-height: 74px // TODO Make this work without magic number: bar height 64px + bar margin 10px = 74px
+
+    o-main
+      overflow-y: auto
 
     & > *
       height: auto

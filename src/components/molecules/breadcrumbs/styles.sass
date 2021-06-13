@@ -1,13 +1,23 @@
 @import tools/mixins
+@import globals
   
-  
-#wrapper
-  display: flex
-  @include font('overline')
 
-  div::after
-    content: ">"
-    padding: 0 5px
+:host
+  background-color: $text-color
 
-  div:last-child::after
-    display: none
+  #wrapper
+    @include font('caption')
+    color: $background-color
+
+    display: flex
+    padding: 8px 10px
+
+    div::after
+      content: ">"
+      padding: 0 5px
+
+    div:last-child::after
+      display: none
+
+    div > *
+      color: $background-color
