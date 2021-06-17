@@ -1,3 +1,74 @@
-div#red
-  color: #f00
-  font-weight: bold
+@import theme
+  
+  
+:host
+  overflow-x: auto
+
+  #table
+    display: grid
+    width: max-content
+
+    gap: 5px
+
+    div
+      display: flex
+      align-items: center
+
+      padding: 10px
+
+      // background-color: $text-color
+      // color: $background-color
+
+      white-space: nowrap
+      font-weight: bold
+
+      // TODO Add this as table title color or table color in general
+      // color: #F7D83E
+      color: #fff
+      background-color: #212121
+
+      &.t1
+        background-color: #F7D83E
+        color: $text-color
+
+      &.t2
+        background-color: #3BF7DE
+        // background-color: #F7D83E
+        color: $text-color
+
+      // Move to attributes
+      &.cspan2
+        grid-row: span 2
+      
+      &.rspan3
+        grid-column: span 3
+
+// Move to attributes
+:host([cols='2'])
+  #table
+    grid-template-columns: repeat(2, fit-content(0))
+
+    div.span
+      grid-column: span 2
+
+:host([cols='3'])
+  #table
+    grid-template-columns: repeat(3, fit-content(0))
+
+    div.span
+      grid-column: span 3
+
+:host([cols='6'])
+  #table
+    grid-template-columns: repeat(6, fit-content(0))
+  
+:host([cols='10'])
+  #table
+    grid-template-columns: repeat(10, fit-content(0))
+
+:host([rows='5'])
+  #table
+    grid-template-rows: repeat(5, fit-content(0))
+
+:host([center])
+  text-align: center

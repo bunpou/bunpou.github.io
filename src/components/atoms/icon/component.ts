@@ -1,7 +1,6 @@
 import Component from 'Components/component'
 
 
-
 interface Icons {
   [key: string]: string
 }
