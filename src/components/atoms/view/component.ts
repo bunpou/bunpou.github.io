@@ -8,7 +8,7 @@ class ViewAtom extends Component {
   content: string
 
 
-  postConnectedCallback() {
+  connectedCallback() {
     Router.addNavigationListener((e: CustomEvent) => {
       const url = e.detail
       this.updateView(url)

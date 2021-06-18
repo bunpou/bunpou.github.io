@@ -24,23 +24,26 @@
 
       // TODO Add this as table title color or table color in general
       // color: #F7D83E
-      color: #fff
-      background-color: #212121
+      color: $background-color
+      background-color: $text-color
 
       &.t1
-        background-color: #F7D83E
-        color: $text-color
+        background-color: #3BF7DE
+        color: #212121
 
       &.t2
-        background-color: #3BF7DE
-        // background-color: #F7D83E
-        color: $text-color
+        // background-color: #3BF7DE
+        background-color: #F7D83E
+        color: #212121
 
       // Move to attributes
-      &.cspan2
+      &.rspan2
         grid-row: span 2
+
+      &.cspan2
+        grid-column: span 2
       
-      &.rspan3
+      &.cspan3
         grid-column: span 3
 
 // Move to attributes
@@ -57,6 +60,13 @@
 
     div.span
       grid-column: span 3
+
+:host([cols='5'])
+  #table
+    grid-template-columns: repeat(5, fit-content(0))
+
+    div.span
+      grid-column: span 5
 
 :host([cols='6'])
   #table

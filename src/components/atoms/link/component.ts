@@ -4,7 +4,7 @@ import Router from 'Scripts/router'
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class LinkAtom extends Component {
-  postConnectedCallback () {
+  connectedCallback () {
     if (this.hasAttribute('to')) {
       const to = this.getAttribute('to')
       const a = this.shadow.querySelector('a')

@@ -6,7 +6,7 @@ const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class NavOrganism extends Component {
-  postConnectedCallback () {
+  connectedCallback () {
     const navItems = querySelectorAllDeep('m-nav-item')
 
     navItems.forEach((navItem: HTMLElement) => {

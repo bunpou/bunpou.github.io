@@ -5,7 +5,7 @@ const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class NavItemMolecula extends Component {
-  postConnectedCallback () {
+  connectedCallback () {
     const header = this.shadow.querySelector('#header')
 
     header.addEventListener('click', (_) => {

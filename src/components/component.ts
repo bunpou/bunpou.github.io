@@ -8,15 +8,13 @@ export default class Component extends HTMLElement {
   loadedCSS (): string {return ''}
 
 
-  postConnectedCallback () {}
+  constructor () {
+    super()
 
-  connectedCallback () {
     this.shadow = this.attachShadow({mode: 'open'})
 
     this.updateHTML()
     this.updateCSS()
-    
-    this.postConnectedCallback()
   }
 
   render (): string {
@@ -52,13 +50,6 @@ export default class Component extends HTMLElement {
       constructor.prototype.loadedHTML = loadedHTML || constructor.prototype.loadedHTML
       constructor.prototype.loadedCSS = (() => {return loadedCSS}) || constructor.prototype.loadedCSS
     }
-  }
-
-  onAttributeChange (attribute: string): void {}
-
-  addAttributeObserver (callback: (attribute: string) => void) {
-    this.onAttributeChange = callback || this.onAttributeChange
-    Component.newAttributeObserver(this, (_: HTMLElement, attribute: string) => this.onAttributeChange(attribute))
   }
 
   static newAttributeObserver (object: HTMLElement, callback: (object: HTMLElement, attribute: string) => void): MutationObserver {
