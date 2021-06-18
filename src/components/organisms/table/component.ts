@@ -8,7 +8,15 @@ class TableOrganism extends Component {
   }
 
   attributeChangedCallback(name: string, oldValue: any, newValue: any) {
-    console.log(name, oldValue, newValue)
+    const table: HTMLElement = this.shadow.querySelector('#table')
+    switch (name) {
+      case 'cols':
+        table.style.gridTemplateColumns = `repeat(${newValue}, fit-content(0)`
+        break
+      case 'rows':
+        table.style.gridTemplateRows = `repeat(${newValue}, fit-content(0)`
+        break
+    }
   }
 }
 

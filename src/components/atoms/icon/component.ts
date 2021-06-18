@@ -34,9 +34,11 @@ class IconAtom extends Component {
     return Object.keys(IconAtom.icons)
   }
 
-  attributeChangedCallback(name: string, _: any, __: any) {
-    this.setIcon(name)
-    this.updateFilter()
+  attributeChangedCallback(name: string, _: any, newValue: any) {
+    if (newValue === '') {
+      this.setIcon(name)
+      this.updateFilter()
+    }
   }
 
   setIcon (name: string) {
@@ -48,7 +50,7 @@ class IconAtom extends Component {
   updateFilter () {
     if (this.iconName !== 'logo') { // TODO Make some flags for such things
       const icon = this.shadow.querySelector<HTMLElement>('#icon')
-      const color = getComputedStyle(document.documentElement).getPropertyValue('--text-color')
+      const color = getComputedStyle(document.documentElement).getPropertyValue('--icon-color')
       const filter = this.colorToFilter(color)
       icon.style.filter = filter
     }

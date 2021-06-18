@@ -2,6 +2,9 @@
   
 
 :host
+  background-color: $table-cell-background-color
+  color: $table-cell-text-color
+
   #cell
     display: flex
     align-items: center
@@ -14,3 +17,11 @@
 :host([center])
   #cell
     justify-content: center
+
+:host([h1])
+  background-color: $table-header1-background-color
+  color: $table-header1-text-color
+
+:host([h2])
+  background-color: $table-header2-background-color
+  color: $table-header2-text-color
