@@ -6,14 +6,17 @@ const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class NavOrganism extends Component {
-  postConnectedCallback () {
+  connectedCallback () {
     const navItems = querySelectorAllDeep('m-nav-item')
 
     navItems.forEach((navItem: HTMLElement) => {
       navItem.addEventListener('click', (e) => {
         const isLinkToSmth = querySelectorDeep('a-link', navItem).hasAttribute('to')
+        const isAnchor = navItem.getAttribute('anchor') !== null
         
-        if (isLinkToSmth) {
+        console.log(isLinkToSmth, isAnchor);
+        
+        if (isLinkToSmth && !isAnchor) {
           navItems.forEach((otherNavItem: HTMLElement) => {
             otherNavItem.removeAttribute('active')
           })
@@ -24,6 +27,10 @@ class NavOrganism extends Component {
         e.stopPropagation()
       })
     })
+  }
+
+  render () {
+    return this.loadedHTML({})
   }
 }
 

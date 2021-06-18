@@ -5,13 +5,13 @@ const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class NavItemMolecula extends Component {
-  postConnectedCallback () {
+  connectedCallback () {
     const header = this.shadow.querySelector('#header')
 
     header.addEventListener('click', (_) => {
       const navItems = this.querySelectorAll(':scope > m-nav-item')
 
-      if (navItems.length !== 0) {
+      if (navItems.length !== 0 && this.getAttribute('to') == null) {
         if (this.getAttribute('open') !== null) {
           this.removeAttribute('open')
         } else {

@@ -1,7 +1,6 @@
 import Component from 'Components/component'
 
 
-
 interface Icons {
   [key: string]: string
 }
@@ -9,7 +8,7 @@ interface Icons {
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class IconAtom extends Component {
-  icons: Icons = {
+  static icons: Icons = {
     'logo': require('Assets/logo.svg'),
     'menu': require('Assets/menu.svg'),
     'close': require('Assets/close.svg'),
@@ -19,10 +18,7 @@ class IconAtom extends Component {
   iconName: string
 
 
-  postConnectedCallback () {
-    this.addAttributeObserver(null)
-    this.onAttributeChange('')
-
+  connectedCallback () {
     Component.newAttributeObserver(document.documentElement, (_, attribute) => {
       if (attribute === 'data-theme') {
         this.updateFilter()
@@ -34,25 +30,27 @@ class IconAtom extends Component {
     return this.loadedHTML({})
   }
 
-  onAttributeChange (_: string) {
-    Object.keys(this.icons).forEach((icon: string) => {
-      if (this.getAttribute(icon) !== null) {
-        this.setIcon(icon)
-        this.updateFilter()
-      }
-    })
+  static get observedAttributes() {
+    return Object.keys(IconAtom.icons)
+  }
+
+  attributeChangedCallback(name: string, _: any, newValue: any) {
+    if (newValue === '') {
+      this.setIcon(name)
+      this.updateFilter()
+    }
   }
 
   setIcon (name: string) {
     const icon = this.shadow.querySelector<HTMLElement>('#icon')
-    icon.style.backgroundImage = 'url("' + this.icons[name] + '")'
+    icon.style.backgroundImage = 'url("' + IconAtom.icons[name] + '")'
     this.iconName = name
   }
 
   updateFilter () {
     if (this.iconName !== 'logo') { // TODO Make some flags for such things
       const icon = this.shadow.querySelector<HTMLElement>('#icon')
-      const color = getComputedStyle(document.documentElement).getPropertyValue('--text-color')
+      const color = getComputedStyle(document.documentElement).getPropertyValue('--icon-color')
       const filter = this.colorToFilter(color)
       icon.style.filter = filter
     }

@@ -3,7 +3,7 @@ import Component from 'Components/component'
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class HeaderOrganism extends Component {
-  postConnectedCallback () {
+  connectedCallback () {
     Component.connectGlobalAttribute(this, 'menu-open')
   }
 

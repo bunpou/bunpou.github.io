@@ -3,7 +3,7 @@ import Component from 'Components/component'
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class ThemeChangerMolecula extends Component {
-  postConnectedCallback () {
+  connectedCallback () {
     this.setAttribute('light', '')
 
     this.addEventListener('click', (_) => {

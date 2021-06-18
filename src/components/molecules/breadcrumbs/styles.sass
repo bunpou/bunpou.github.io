@@ -1,0 +1,23 @@
+@import tools/mixins
+@import globals
+  
+
+:host
+  background-color: $text-color
+
+  #wrapper
+    @include font('caption')
+    color: $background-color
+
+    display: flex
+    padding: 8px 10px
+
+    div::after
+      content: ">"
+      padding: 0 5px
+
+    div:last-child::after
+      display: none
+
+    div > *
+      color: $background-color

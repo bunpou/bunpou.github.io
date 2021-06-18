@@ -1,9 +1,36 @@
 @import globals
+@import theme
   
 
 :host
-  #content
+  width: 100%
+
+  #wrapper
     display: flex
     flex-direction: column
+    align-items: center
+    width: 100%
 
-    padding: $content-padding
+    m-breadcrumbs
+      width: 100%
+
+    #content
+      display: flex
+      width: 100%
+      box-sizing: border-box
+      flex-direction: column
+      padding: 0 $content-padding 20px $content-padding
+      max-width: $media-extra-large
+
+      & > *
+        margin: 10px 0
+
+      #title
+        display: flex
+        justify-content: center
+        align-items: center
+        text-align: center
+        background-color: $container-background-color
+        color: $container-text-color
+        padding: calc(min(#{$content-padding}, 40px))
+        margin: 20px 0
