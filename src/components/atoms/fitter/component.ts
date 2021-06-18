@@ -21,8 +21,6 @@ class FitterAtom extends Component {
   }
 
   static isOverflown(element: HTMLElement) {
-    // console.log(element.scrollHeight, element.clientHeight, element.scrollWidth, element.clientWidth)
-    
     return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth
   }
 }
