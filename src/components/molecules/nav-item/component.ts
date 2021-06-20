@@ -18,12 +18,7 @@ class NavItemMolecula extends Component {
   }
 
   processAttrs () {
-    const notNavItems = Array.from(this.querySelectorAll(':scope > :not(m-nav-item)')).map(value => value.outerHTML).join('')
-    this.header = notNavItems
-    const navItems = Array.from(this.querySelectorAll(':scope > m-nav-item')).map(value => value.outerHTML).join('')
-    this.accordeon = navItems
-
-    const clone: HTMLElement = this.cloneNode(true) // It works, believe me
+    const clone: HTMLElement = this.cloneNode(true) as HTMLElement // It works, believe me
     clone.querySelectorAll('m-nav-item').forEach((navItem) => {
       if (clone.contains(navItem)) {
         clone.removeChild(navItem)
@@ -31,6 +26,9 @@ class NavItemMolecula extends Component {
     })
 
     this.header = clone.innerHTML
+
+    const navItems = Array.from(this.querySelectorAll(':scope > m-nav-item')).map(value => value.outerHTML).join('')
+    this.accordeon = navItems
   }
 
   processOnclick () {
@@ -58,11 +56,9 @@ class NavItemMolecula extends Component {
   }
 
   processPath () {
-    this.link = null
     this.link = this.hasAttribute('path') ? this.getAttribute('path') + '/' + this.getAttribute('to') : this.getAttribute('to')
 
     const accordeon = this.shadow.querySelector('#accordeon')
-
     if (accordeon) {
       const navItems = accordeon.children
 
@@ -71,6 +67,8 @@ class NavItemMolecula extends Component {
         navItem.processPath()
       })
     }
+
+    querySelectorDeep('a-link', this).setAttribute('to', this.link)
   }
 
   render () {

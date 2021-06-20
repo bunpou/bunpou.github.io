@@ -4,17 +4,19 @@ import Router from 'Scripts/router'
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 export default class LinkAtom extends Component {
-  connectedCallback () {
-    if (this.hasAttribute('to')) {
-      const to = this.getAttribute('to')
-      const a = this.shadow.querySelector('a')
-      a.href = '/' + to
+  static get observedAttributes() {
+    return ['to']
+  }
 
-      this.addEventListener('click', (event) => {
-        Router.navigate(to)
-        event.preventDefault()
-      })
-    }
+  attributeChangedCallback(name: string, _: any, newValue: any) {
+    const to = this.getAttribute('to')
+    const a = this.shadow.querySelector('a')
+    a.href = '/' + to
+
+    this.addEventListener('click', (event) => {
+      Router.navigate(to)
+      event.preventDefault()
+    })
   }
 }
 
