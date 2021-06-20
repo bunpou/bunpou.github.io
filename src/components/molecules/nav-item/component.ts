@@ -30,12 +30,12 @@ class NavItemMolecula extends Component {
   }
 
   render () {
-    const content = Array.from(this.querySelectorAll(':scope > :not(m-nav-item)')).map(value => value.outerHTML).join('')
+    const notNavItems = Array.from(this.querySelectorAll(':scope > :not(m-nav-item)')).map(value => value.outerHTML).join('')
     const navItems = Array.from(this.querySelectorAll(':scope > m-nav-item')).map(value => value.outerHTML).join('')
 
     return this.loadedHTML({
       'to': this.getAttribute('to'),
-      'content': content,
+      'content': notNavItems,
       'navItems': navItems,
     })
   }

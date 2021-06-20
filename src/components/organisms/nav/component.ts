@@ -14,8 +14,6 @@ class NavOrganism extends Component {
         const isLinkToSmth = querySelectorDeep('a-link', navItem).hasAttribute('to')
         const isAnchor = navItem.getAttribute('anchor') !== null
         
-        console.log(isLinkToSmth, isAnchor);
-        
         if (isLinkToSmth && !isAnchor) {
           navItems.forEach((otherNavItem: HTMLElement) => {
             otherNavItem.removeAttribute('active')
