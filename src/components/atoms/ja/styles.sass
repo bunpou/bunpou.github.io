@@ -1,4 +1,5 @@
 @import tools/mixins
+@import theme
 
 
 :host
@@ -14,6 +15,18 @@
   
   ruby#over
     ruby-position: over
+
+  span.hl
+    color: $highlight-color
+
+  span.ac
+    color: $accent-color
+
+:host([hl])
+  color: $highlight-color
+
+:host([ac])
+  color: $accent-color
 
 :host([start])
   ruby#under

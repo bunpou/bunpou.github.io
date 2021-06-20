@@ -1,0 +1,44 @@
+@import theme
+@import globals
+@import tags
+  
+  
+:host
+  display: flex
+  background-color: $container-background-color
+  color: $container-text-color
+  width: max-content
+
+  #container
+    display: flex
+
+    #content
+      padding: 15px 20px
+
+:host([center])
+  justify-content: center
+  align-items: center
+  text-align: center
+
+@mixin container-highlight($color)
+  width: 8px
+  background-color: $color
+  content: ''
+
+:host([example])
+  #container::before
+    @include container-highlight($information-color)
+
+:host([success]),
+:host([right])
+  #container::before
+    @include container-highlight($success-color)
+
+:host([wrong]),
+:host([error])
+  #container::before
+    @include container-highlight($error-color)
+
+:host([warning])
+  #container::before
+    @include container-highlight($warning-color)

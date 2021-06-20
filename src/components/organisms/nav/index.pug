@@ -1,12 +1,18 @@
 #list
-  m-nav-item(to='home') #[a-ja(u='home' start) ホーム]
-  m-nav-item #[a-ja(u='cheatsheets' start) 表#[rt ひょう]か]
-    m-nav-item #[a-ja(u='verbs' start) 動#[rt どう]詞#[rt し]]
-      m-nav-item(to='cheatsheets/verbs/bases') #[a-ja(u='bases' start) 活#[rt かつ]用#[rt よう]形#[rt けい]]
-        m-nav-item(to='cheatsheets/verbs/bases#irrealis-form' anchor) # #[a-ja(u='irrealis form' start) 未#[rt み]然#[rt ぜん]形#[rt けい]]
-        m-nav-item(to='cheatsheets/verbs/bases#continuative-form' anchor) # #[a-ja(u='continuative form' start) 連#[rt れん]用#[rt よう]形#[rt けい]]
-      m-nav-item(to='cheatsheets/verbs/ru-verbs') #[a-ja(u='ru-verbs' start) 一#[rt いち]段#[rt だん]]
-      m-nav-item(to='cheatsheets/verbs/u-verbs') #[a-ja(u='u-verbs' start) 五#[rt ご]段#[rt だん]]
-    m-nav-item #[a-ja(u='adjectives') 形#[rt けい]容#[rt よう]詞#[rt し]]
+  m-nav-item(to='home') #[ruby.under ホーム #[rt home]]
+  m-nav-item(to='cheatsheets' not-a-link) #[ruby.under #[ruby 表#[rt ひょう]か]#[rt cheatsheets]]
+    m-nav-item(to='verbs' not-a-link) #[ruby.under #[ruby 動#[rt どう]詞#[rt し]]#[rt verbs]]
+      m-nav-item(to='classifying-into-ru-and-u') Classifying into #[ruby る] and #[ruby う] verbs
+      m-nav-item(to='ru-verbs') #[ruby.under #[ruby 一#[rt いち]段#[rt だん]]#[rt ru-verbs]]
+      m-nav-item(to='u-verbs' not-a-link) #[a-ja(u='u-verbs' start) 五#[rt ご]段#[rt だん]]
+        m-nav-item(to='bases') #[a-ja(u='bases' start) 活#[rt かつ]用#[rt よう]形#[rt けい]]
+          m-nav-item(to='#functions-of-bases' anchor=1) Functions of bases
+          m-nav-item(to='#negative-base' anchor=2) 1.Negative base
+          m-nav-item(to='#conjunctive-base' anchor=2) 2. Conjunctive base
+          m-nav-item(to='#dictionary-base' anchor=2) 3. Dictionary base
+          m-nav-item(to='#conditional-imperative-base' anchor=2) 4. Conditional or imperative base
+          m-nav-item(to='#volitional-base' anchor=2) 5. Volitional base
+      m-nav-item(to='irregular-verbs') Irregular verbs
+    m-nav-item(to='adjectives' not-a-link) #[a-ja(u='adjectives') 形#[rt けい]容#[rt よう]詞#[rt し]]
   m-nav-item(to='contribute') #[a-ja(u='contribute' start) 貢献#[rt こうけん]する]
   m-nav-item(to='about') #[a-ja(u='about' start) ついて]

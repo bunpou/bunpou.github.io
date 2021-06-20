@@ -37,6 +37,8 @@ class ViewAtom extends Component {
 
       if (hash) {
         this.toAnchor(hash)
+      } else {
+        this.scrollIntoView()
       }
     }
   }

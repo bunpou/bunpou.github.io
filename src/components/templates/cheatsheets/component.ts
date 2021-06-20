@@ -5,7 +5,7 @@ import Component from 'Components/component'
 class CheatsheetsTemplate extends Component {
   render () {
     return this.loadedHTML({
-      'title': this.getAttribute('title'),
+      'header': this.getAttribute('header'),
       'content': this.innerHTML
     })
   }
