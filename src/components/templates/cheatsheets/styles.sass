@@ -1,5 +1,6 @@
 @import globals
 @import theme
+@import tags
   
 
 :host
@@ -13,6 +14,9 @@
 
     m-breadcrumbs
       width: 100%
+      position: sticky
+      left: 0
+      top: 0
 
     #content
       display: flex
@@ -24,6 +28,12 @@
 
       & > *
         margin: 10px 0
+
+      & > m-title
+        margin: 40px 0 10px 0
+
+      & > m-title:first-child
+        margin: 20px 0 10px 0
 
       #title
         display: flex

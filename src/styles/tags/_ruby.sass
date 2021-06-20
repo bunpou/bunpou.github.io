@@ -1,0 +1,40 @@
+@import tools/mixins
+@import theme
+
+  
+ruby
+  @include ja-font(body)
+  width: max-content
+
+  .under
+    ruby-position: under
+
+  .under *
+    ruby-position: over
+
+  .start
+    ruby-align: start
+
+  .hl
+    color: $highlight-color
+
+  .ac
+    color: $accent-color
+
+  .h1
+    @include ja-font(h1)
+
+  .h2
+    @include ja-font(h2)
+
+  .h3
+    @include ja-font(h3)
+
+  .h4
+    @include ja-font(h4)
+
+  .h5
+    @include ja-font(h5)
+
+  .h6
+    @include ja-font(h6)

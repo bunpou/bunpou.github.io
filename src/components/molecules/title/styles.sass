@@ -1,0 +1,26 @@
+@import theme
+
+  
+:host
+  width: 100%
+
+  #title
+    width: 100%
+
+:host([level])
+  #title:first-child::before
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 0 10px
+
+    background-color: $accent-color
+    color: $text-color
+
+:host([level='1'])
+  #title:first-child::before
+    content: "#"
+
+:host([level='2'])
+  #title:first-child::before
+    content: "##"
