@@ -12,9 +12,7 @@ export default class Component extends HTMLElement {
     super()
 
     this.shadow = this.attachShadow({mode: 'open'})
-
-    this.updateHTML()
-    this.updateCSS()
+    this.update()
   }
 
   render (): string {
@@ -27,6 +25,11 @@ export default class Component extends HTMLElement {
     // Post proccessing of loaded css
     
     return this.loadedCSS()
+  }
+
+  update () {
+    this.updateHTML()
+    this.updateCSS()
   }
 
   updateCSS () {

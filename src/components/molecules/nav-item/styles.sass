@@ -41,6 +41,7 @@
 
       a-link
         padding: 5px 20px
+        ruby-align: start
 
     #accordeon
       display: none
@@ -84,6 +85,12 @@
         content: "#"
 
 :host([anchor='2'])
+  #wrapper
+    #header
+      &::before
+        content: "##"
+
+:host([anchor='3'])
   #wrapper
     #header
       &::before

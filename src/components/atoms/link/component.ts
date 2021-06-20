@@ -3,7 +3,7 @@ import Router from 'Scripts/router'
 
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
-class LinkAtom extends Component {
+export default class LinkAtom extends Component {
   connectedCallback () {
     if (this.hasAttribute('to')) {
       const to = this.getAttribute('to')

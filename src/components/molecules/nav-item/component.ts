@@ -5,13 +5,41 @@ const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class NavItemMolecula extends Component {
+  link: string
+  header: string
+  accordeon: string
+
+
   connectedCallback () {
+    this.processAttrs()
+    this.update()
+    this.processPath()
+    this.processOnclick()
+  }
+
+  processAttrs () {
+    const notNavItems = Array.from(this.querySelectorAll(':scope > :not(m-nav-item)')).map(value => value.outerHTML).join('')
+    this.header = notNavItems
+    const navItems = Array.from(this.querySelectorAll(':scope > m-nav-item')).map(value => value.outerHTML).join('')
+    this.accordeon = navItems
+
+    const clone: HTMLElement = this.cloneNode(true) // It works, believe me
+    clone.querySelectorAll('m-nav-item').forEach((navItem) => {
+      if (clone.contains(navItem)) {
+        clone.removeChild(navItem)
+      }
+    })
+
+    this.header = clone.innerHTML
+  }
+
+  processOnclick () {
     const header = this.shadow.querySelector('#header')
 
     header.addEventListener('click', (_) => {
       const navItems = this.querySelectorAll(':scope > m-nav-item')
 
-      if (navItems.length !== 0 && this.getAttribute('to') == null) {
+      if (navItems.length !== 0 && (this.getAttribute('to') == null || this.getAttribute('not-a-link') !== null)) {
         if (this.getAttribute('open') !== null) {
           this.removeAttribute('open')
         } else {
@@ -29,14 +57,27 @@ class NavItemMolecula extends Component {
     })
   }
 
-  render () {
-    const notNavItems = Array.from(this.querySelectorAll(':scope > :not(m-nav-item)')).map(value => value.outerHTML).join('')
-    const navItems = Array.from(this.querySelectorAll(':scope > m-nav-item')).map(value => value.outerHTML).join('')
+  processPath () {
+    this.link = null
+    this.link = this.hasAttribute('path') ? this.getAttribute('path') + '/' + this.getAttribute('to') : this.getAttribute('to')
 
+    const accordeon = this.shadow.querySelector('#accordeon')
+
+    if (accordeon) {
+      const navItems = accordeon.children
+
+      Array.from(navItems).forEach((navItem: NavItemMolecula) => {
+        navItem.setAttribute('path', this.link)
+        navItem.processPath()
+      })
+    }
+  }
+
+  render () {
     return this.loadedHTML({
-      'to': this.getAttribute('to'),
-      'content': notNavItems,
-      'navItems': navItems,
+      'link': this.hasAttribute('not-a-link') ? null : this.link,
+      'header': this.header,
+      'accordeon': this.accordeon,
     })
   }
 }
