@@ -9,14 +9,18 @@ export default class LinkAtom extends Component {
   }
 
   attributeChangedCallback(name: string, _: any, newValue: any) {
-    const to = this.getAttribute('to')
-    const a = this.shadow.querySelector('a')
-    a.href = '/' + to
+    this.removeEventListener('click', this.processClick)
 
-    this.addEventListener('click', (event) => {
-      Router.navigate(to)
-      event.preventDefault()
-    })
+    const a = this.shadow.querySelector('a')
+    a.href = '/' + this.getAttribute('to')
+
+    this.addEventListener('click', this.processClick)
+  }
+
+  processClick (event: Event) {
+    const self: HTMLElement = event.currentTarget as HTMLElement
+    Router.navigate(self.getAttribute('to'))
+    event.preventDefault()
   }
 }
 
