@@ -56,7 +56,17 @@ class NavItemMolecula extends Component {
   }
 
   processPath () {
-    this.link = this.hasAttribute('path') ? this.getAttribute('path') + '/' + this.getAttribute('to') : this.getAttribute('to')
+    if (this.hasAttribute('path')) {
+      const path = this.getAttribute('path')
+      const to = this.getAttribute('to')
+
+      if (to[0] === '#') {
+        this.link = path + to
+      } else
+        this.link = path + '/' + to
+    } else {
+      this.link = this.getAttribute('to')
+    }
 
     const accordeon = this.shadow.querySelector('#accordeon')
     if (accordeon) {
@@ -68,7 +78,9 @@ class NavItemMolecula extends Component {
       })
     }
 
-    querySelectorDeep('a-link', this).setAttribute('to', this.link)
+    if (!this.hasAttribute('not-a-link')) {
+      querySelectorDeep('a-link', this).setAttribute('to', this.link)
+    }
   }
 
   render () {

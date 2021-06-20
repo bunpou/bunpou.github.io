@@ -18,7 +18,7 @@ class BreadcrumbsMolecula extends Component {
       const breadcrumb = breadcrumbs[i]
 
       const breadcrumbPath = breadcrumbs.slice(0, i + 1).join('/')
-      const breadcrumbTitle = breadcrumb.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase())
+      const breadcrumbTitle = breadcrumb[0].toUpperCase() + breadcrumb.slice(1).toLowerCase().split('-').join(' ')
 
       const breadcrumbElement = document.createElement('div')
 
