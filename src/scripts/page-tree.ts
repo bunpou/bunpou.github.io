@@ -7,11 +7,11 @@ interface Fold {
   title: string,
   tree: Tree,
 }
-type Tree = (Page|Fold)[]
+export type Tree = (Page|Fold)[]
 
 
-export default class PageTree {
-  static tree: {} = PageTree.generateTree((() => {
+export class PageTree {
+  static tree: Tree = PageTree.generateTree((() => {
     const container = document.createElement('div')
     container.innerHTML = require('./page-tree.pug')({})
     return Array.from(container.children)
@@ -20,6 +20,12 @@ export default class PageTree {
   static generateTree (nodes: Element[]): Tree {
     const tree: Tree = []
     nodes.forEach((node: HTMLElement) => {
+      // Making first ruby under to shortify writing of pages
+      const firstChild = node.children[0]
+      if (firstChild && firstChild.tagName === 'RUBY') {
+        firstChild.className = 'under'
+      }
+
       if (node.tagName === 'PAGE') {
         tree.push({
           name: node.className,
