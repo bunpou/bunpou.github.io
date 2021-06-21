@@ -1,10 +1,18 @@
 import Component from 'Components/component'
 
-const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
+// const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
 
 
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class NavItemMolecula extends Component {
+  render () {
+    return this.loadedHTML({
+      'link': this.getAttribute('link'),
+      'header': this.getAttribute('header'),
+      'accordeon': this.innerHTML,
+    })
+  }
+  /*
   link: string
   header: string
   accordeon: string
@@ -19,7 +27,7 @@ class NavItemMolecula extends Component {
 
   processAttrs () {
     const clone: HTMLElement = this.cloneNode(true) as HTMLElement // It works, believe me
-    clone.querySelectorAll('m-nav-item').forEach((navItem) => {
+    clone.querySelectorAll(':scope > m-nav-item').forEach((navItem) => {
       if (clone.contains(navItem)) {
         clone.removeChild(navItem)
       }
@@ -35,9 +43,9 @@ class NavItemMolecula extends Component {
     const header = this.shadow.querySelector('#header')
 
     header.addEventListener('click', (_) => {
-      const navItems = this.querySelectorAll(':scope > m-nav-item')
+      const hasNavItem = this.querySelector(':scope > m-nav-item')
 
-      if (navItems.length !== 0 && (this.getAttribute('to') == null || this.getAttribute('not-a-link') !== null)) {
+      if (hasNavItem && (this.getAttribute('to') == null || this.getAttribute('not-a-link') !== null)) {
         if (this.getAttribute('open') !== null) {
           this.removeAttribute('open')
         } else {
@@ -90,6 +98,7 @@ class NavItemMolecula extends Component {
       'accordeon': this.accordeon,
     })
   }
+  */
 }
 
 

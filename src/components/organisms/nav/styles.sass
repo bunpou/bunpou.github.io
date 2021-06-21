@@ -1,8 +1,88 @@
+@import theme
+@import globals
+
+  
 :host
   width: 100%
   padding: 10px 0
 
-  #list
+  nav
     display: flex
     flex-direction: column
     width: 100%
+
+    div
+      display: flex
+      flex-direction: column
+      box-sizing: border-box
+      width: 100%
+      cursor: pointer
+
+      .title
+        display: flex
+        flex-direction: row
+
+        &::before
+          display: block
+          width: 2px
+          height: auto
+
+          position: relative
+          top: 0
+
+          content: ""
+          background-color: $primary-color
+
+          transition: $animation-transition
+          transition-property: width
+
+        &:hover::before
+          background-color: $accent-color
+          width: 4px
+        
+        &:active::before
+          background-color: $accent-color
+          width: 2px
+
+        a-link
+          padding: 5px 20px
+          ruby-align: start
+
+      .accordeon
+        display: none
+        flex-direction: column
+        
+        div
+          width: 100%
+          padding: 0 0 0 20px
+
+      &.open > .accordeon,
+      &.active > .accordeon
+        display: flex
+
+      &.active > .title::before
+        background-color: $accent-color
+
+      &.anchor >
+          .title
+            &::before
+              display: flex
+              justify-content: center
+              align-items: center
+              width: auto
+
+              background: none
+              color: $text-color
+            
+            &:hover::before,
+            &:active::before
+              color: $accent-color
+
+      &.anchor--level-1 > .title::before
+        content: "#"
+      
+      &.anchor--level-2 > .title::before
+        content: "##"
+      
+      &.anchor--level-3 > .title::before
+        content: "###"

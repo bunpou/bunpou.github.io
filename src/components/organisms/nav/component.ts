@@ -1,4 +1,5 @@
 import Component from 'Components/component'
+import PageTree from 'Scripts/page-tree'
 
 const querySelectorAllDeep = require('query-selector-shadow-dom').querySelectorAllDeep
 const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep

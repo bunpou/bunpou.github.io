@@ -65,7 +65,7 @@ module.exports = {
       },
       {
         test: /\.pug/,
-        exclude: /(node_modules|bower_components|components)/,
+        exclude: /(node_modules|bower_components|components|scripts)/,
         use: [
           {loader: 'html-loader'},
           {
@@ -78,7 +78,7 @@ module.exports = {
       },
       {
         test: /\.pug/,
-        include: /(components)/,
+        include: /(components|scripts)/,
         use: [
           'pug-loader',
         ],

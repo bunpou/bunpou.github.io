@@ -9,7 +9,7 @@
   width: 100%
   cursor: pointer
 
-  #wrapper
+  #nav-item
     display: flex
     flex-direction: column
 
@@ -53,17 +53,17 @@
 
 :host([open]),
 :host([to][active])
-  #wrapper
+  #nav-item
     #accordeon
       display: flex
 
 :host([active])
-  #wrapper
+  #nav-item
     #header::before
       background-color: $accent-color
 
 :host([anchor])
-  #wrapper
+  #nav-item
     #header
       &::before
         display: flex
@@ -79,19 +79,19 @@
         color: $accent-color
 
 :host([anchor='1'])
-  #wrapper
+  #nav-item
     #header
       &::before
         content: "#"
 
 :host([anchor='2'])
-  #wrapper
+  #nav-item
     #header
       &::before
         content: "##"
 
 :host([anchor='3'])
-  #wrapper
+  #nav-item
     #header
       &::before
         content: "##"
