@@ -59,7 +59,8 @@ export class PageTree {
 
       if (treeElement.name == name) return treeElementPath
       if (treeElement.hasOwnProperty('children')){
-        return this.buildPathFromName((<Fold>treeElement).children, name, treeElementPath)
+        const outputPath = this.buildPathFromName((<Fold>treeElement).children, name, treeElementPath)
+        if (outputPath) return outputPath 
       }
     }
   }

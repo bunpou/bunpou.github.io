@@ -15,7 +15,7 @@ class NavOrganism extends Component {
   connectedCallback () {
     this.buildFromTree(this.shadow.querySelector('nav'), PageTree.tree)
 
-    /*
+    /* TODO Click procession
     const navItems = querySelectorAllDeep('m-nav-item')
 
     navItems.forEach((navItem: HTMLElement) => {
