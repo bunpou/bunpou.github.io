@@ -1,11 +1,11 @@
-interface Page {
+export interface Page {
   name: string,
   title: string,
 }
-interface Fold {
+export interface Fold {
   name: string,
   title: string,
-  tree: Tree,
+  children: Tree,
 }
 export type Tree = (Page|Fold)[]
 
@@ -42,7 +42,7 @@ export class PageTree {
         tree.push({
           name: node.className,
           title: nodeWithTitleOnly.innerHTML,
-          tree: node.children ? PageTree.generateTree(Array.from(node.querySelectorAll(':scope > fold, :scope > page'))) : [],
+          children: node.children ? PageTree.generateTree(Array.from(node.querySelectorAll(':scope > fold, :scope > page'))) : [],
         })
       } else {
         throw `Wrong tree element tag name: ${node.tagName}`
@@ -50,5 +50,17 @@ export class PageTree {
     })
 
     return tree
+  }
+
+  static buildPathFromName (tree: Tree, name: string, path: string = ''): string {
+    for (let i = 0; i < tree.length; i++) {
+      const treeElement = tree[i]
+      const treeElementPath = path === '' ? treeElement.name : path + '/' + treeElement.name
+
+      if (treeElement.name == name) return treeElementPath
+      if (treeElement.hasOwnProperty('children')){
+        return this.buildPathFromName((<Fold>treeElement).children, name, treeElementPath)
+      }
+    }
   }
 }

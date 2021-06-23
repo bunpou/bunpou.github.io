@@ -1,6 +1,6 @@
 import LinkAtom from 'Atoms/link/component'
 import Component from 'Components/component'
-import {Tree, PageTree} from 'Scripts/page-tree'
+import {Tree, Fold, PageTree} from 'Scripts/page-tree'
 
 /* Do I need these ? */
 const querySelectorAllDeep = require('query-selector-shadow-dom').querySelectorAllDeep
@@ -13,7 +13,7 @@ class NavOrganism extends Component {
 
 
   connectedCallback () {
-    this.buildNavFromTree(this.shadow.querySelector('nav'), PageTree.tree)
+    this.buildFromTree(this.shadow.querySelector('nav'), PageTree.tree)
 
     /*
     const navItems = querySelectorAllDeep('m-nav-item')
@@ -37,27 +37,29 @@ class NavOrganism extends Component {
     */
   }
 
-  buildNavFromTree (root: HTMLElement, tree: Tree) {
+  buildFromTree (root: HTMLElement, tree: Tree) {
     tree.forEach((treeElement) => {
-      const isFold = treeElement.hasOwnProperty('tree')
+      const isFold = treeElement.hasOwnProperty('children')
       const element = document.createElement('div')
       element.className = isFold ? 'fold' : 'page'
 
       const title = document.createElement('div')
       title.className = 'title'
+
       const link = document.createElement('a-link') as LinkAtom
-      link.setAttribute('to', treeElement.name) // PageTree.buildPath(treeElement)) // TODO Add this function
       link.setAttribute('block', '')
+      const path = PageTree.buildPathFromName(PageTree.tree, treeElement.name)
+      link.setAttribute('to', path)
       link.innerHTML = treeElement.title
       link.update()
+
       title.appendChild(link)
       element.appendChild(title)
 
       if (isFold) {
         const accordeon = document.createElement('div')
         accordeon.className = 'accordeon'
-
-        // TODO Process accordeon creation here...
+        this.buildFromTree(accordeon, (<Fold>treeElement).children)
 
         element.appendChild(accordeon)
       }
@@ -65,8 +67,6 @@ class NavOrganism extends Component {
       this.navItems.push(element)
       root.appendChild(element)
     })
-
-    console.log(this.navItems);
   }
 
   render () {
