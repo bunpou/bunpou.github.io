@@ -5,6 +5,7 @@ import Component from 'Components/component'
 class FitterAtom extends Component {
   connectedCallback () {
     window.addEventListener('resize', this.fit.bind(this))
+    this.fit()
   }
 
   render () {
