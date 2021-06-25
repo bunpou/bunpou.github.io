@@ -1,5 +1,6 @@
 import Component from 'Components/component'
 import Router from 'Scripts/router'
+import {PageTree, Fold} from 'Scripts/page-tree'
 
 const querySelectorDeep = require('query-selector-shadow-dom').querySelectorDeep
 
@@ -45,10 +46,23 @@ class ViewAtom extends Component {
 
   loadPage (url: string): string {
     url = url || this.getAttribute('default')
+
+    if (url[url.length - 1] === '/') url = url.slice(0, -1) // test/page/path/ --> test/page/path
     
-    try {
-      return require('../../../pages/' + url + '.pug').default  // TODO relative path somehow to aliases
-    } catch (_) {
+    const page = PageTree.getByURL(url)
+    if (page !== null) {
+      if (PageTree.isFold(page)) {
+        const firstChildPage = PageTree.getFirstChildPage(<Fold>page)
+        if (firstChildPage !== null) {
+          const path = PageTree.buildPathFromName(PageTree.tree, firstChildPage.name)
+          Router.navigate(path)
+        } else {
+          Router.navigate(this.getAttribute('default'))
+        }
+      } else {
+        return require('../../../pages/' + url + '.pug').default  // TODO relative path somehow to aliases
+      }
+    } else {
       Router.navigate(this.getAttribute('default'))
     }
   }
