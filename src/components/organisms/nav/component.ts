@@ -41,6 +41,7 @@ class NavOrganism extends Component {
         navItem.classList.add('open')
       } else {
         navItem.classList.add('active')
+        this.activeNavItem = navItem
       }
       
     }
