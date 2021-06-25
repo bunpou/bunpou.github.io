@@ -5,7 +5,8 @@ import Component from 'Components/component'
 class FitterAtom extends Component {
   connectedCallback () {
     window.addEventListener('resize', this.fit.bind(this))
-    this.fit()
+    setTimeout(this.fit.bind(this), 0) // TODO Make this work without setTimeout. It may cause problems with
+    // loading pages with hashes as they will move and fitter will resize and position will be wrong
   }
 
   render () {
