@@ -10,7 +10,6 @@ class MenuBtnMolecula extends Component {
       const html = document.documentElement
       const htmlMenuOpen = html.getAttribute('data-menu-open')
       document.documentElement.setAttribute('data-menu-open', htmlMenuOpen === 'true' ? 'false' : 'true')
-      // this.setAttribute('menu-open', htmlMenuOpen == 'true' ? 'false' : 'true')
     })
 
     Component.connectGlobalAttribute(this, 'menu-open')
@@ -21,8 +20,6 @@ class MenuBtnMolecula extends Component {
   }
 
   attributeChangedCallback(name: string, _: any, newValue: any) {
-    console.log(name, newValue);
-    
     if (name === 'menu-open') {
       const menuOpen = newValue
       const icon : HTMLElement = querySelectorDeep('a-icon', this)
