@@ -54,7 +54,7 @@ class ViewAtom extends Component {
       if (PageTree.isFold(page)) {
         const firstChildPage = PageTree.getFirstChildPage(<Fold>page)
         if (firstChildPage !== null) {
-          const path = PageTree.buildPathFromName(PageTree.tree, firstChildPage.name)
+          const path = PageTree.buildPathFromName(firstChildPage.name)
           Router.navigate(path)
         } else {
           Router.navigate(this.getAttribute('default'))

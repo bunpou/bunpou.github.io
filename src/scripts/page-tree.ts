@@ -21,11 +21,17 @@ export class PageTree {
   static generateTree (nodes: Element[]): Tree {
     const tree: Tree = []
     nodes.forEach((node: HTMLElement) => {
+      // TODO START Move this in nav
       // Making first ruby under to shortify writing of pages
       const firstChild = node.children[0]
       if (firstChild && firstChild.tagName === 'RUBY') {
         firstChild.className = 'under'
+        const rt: HTMLElement = firstChild.children[firstChild.children.length - 1] as HTMLElement
+        if (rt && rt.tagName === 'RT') {
+          rt.style.rubyAlign = 'start'
+        }
       }
+      // ... TODO END
 
       if (node.tagName === 'PAGE') {
         tree.push({
@@ -53,14 +59,14 @@ export class PageTree {
     return tree
   }
 
-  static buildPathFromName (tree: Tree, name: string, path: string = ''): string {
+  static buildPathFromName (name: string, tree: Tree = PageTree.tree, path: string = ''): string {
     for (let i = 0; i < tree.length; i++) {
       const treeElement = tree[i]
       const treeElementPath = path === '' ? treeElement.name : path + '/' + treeElement.name
 
       if (treeElement.name == name) return treeElementPath
       if (PageTree.isFold(treeElement)){
-        const outputPath = this.buildPathFromName((<Fold>treeElement).children, name, treeElementPath)
+        const outputPath = this.buildPathFromName(name, (<Fold>treeElement).children, treeElementPath)
         if (outputPath) return outputPath 
       }
     }
@@ -118,5 +124,9 @@ export class PageTree {
     }
 
     return null
+  }
+
+  static searchAll(searchText: string, root: Tree = PageTree.tree): TreeElement[] {
+    return [] // TODO
   }
 }

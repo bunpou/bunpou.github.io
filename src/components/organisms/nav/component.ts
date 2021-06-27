@@ -100,7 +100,7 @@ class NavOrganism extends Component {
     const link = document.createElement('a-link') as LinkAtom
     link.setAttribute('block', '')
     if (!isFold) {
-      const path = PageTree.buildPathFromName(PageTree.tree, treeElement.name)
+      const path = PageTree.buildPathFromName(treeElement.name)
       link.setAttribute('to', path)
     }
     link.innerHTML = treeElement.title
