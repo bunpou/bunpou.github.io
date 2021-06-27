@@ -23,11 +23,17 @@
       width: 100%
       box-sizing: border-box
       flex-direction: column
-      padding: 0 $content-padding 20px $content-padding
-      max-width: $media-extra-large
+      padding: 0 0 20px 0
+      // max-width: $media-extra-large
 
       & > *
         margin: 10px 0
+        padding: 0 $content-padding
+        box-sizing: border-box
+
+      & > a-container
+        padding: 20px $content-padding
+        width: 100%
 
       & > m-title
         margin: 40px 0 10px 0
