@@ -53,41 +53,72 @@ $search-height: 45px
       left: 0
       z-index: 1
 
-      display: grid
-      gap: 10px
+      display: flex
+      flex-direction: column
       width: 100%
 
+      padding: 0 5px 5px 5px
+      box-sizing: border-box
+
       background-color: $background-color
+      border: 1px solid $text-color
+      border-top: 0
 
-      .result
-        display: flex
+      #list
+        display: grid
+        gap: 10px
+        width: 100%
 
-        .source
+        .result
           display: flex
-          justify-content: center
-          align-items: center
-          padding: 5px
-          width: 85px
+
+          height: 100%
           box-sizing: border-box
 
-          border: 1px solid $text-color
-          background-color: $background-color
+          cursor: pointer
 
-        .title
-          display: flex
-          align-items: center
-          padding: 5px
-          flex-grow: 1
+          .source
+            display: flex
+            justify-content: center
+            align-items: center
+
+            width: 85px
+            height: 100%
+            box-sizing: border-box
+
+            color: $text-color
+            background-color: $accent-color
+            border: 1px solid $accent-color
+
+          .title
+            display: flex
+            align-items: center
+            flex-grow: 1
+            box-sizing: border-box
+            
+            background-color: $text-color
+            color: $background-color
           
-          background-color: $text-color
-          color: $background-color
+          .source, .title
+            a-link
+              height: 100%
+              padding: 5px
+              box-sizing: border-box
 
-      a-btn.show-all
-        display: flex
+          &:hover > .title
+            border: 1px solid $accent-color
+            border-left: 0
+            background-color: $background-color
+            color: $text-color
+
+      #show-all
+        display: none
         justify-content: center
         align-items: center
-        padding: 5px
 
-        background-color: $text-color
-        color: $background-color
+        margin-top: 10px
+        padding: 0
+      
+      #show-all.display
+        display: flex
         

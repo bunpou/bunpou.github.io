@@ -3,17 +3,21 @@
     a-icon#icon(search)
     input#input(type='text' placeholder='Start typing to search...')
   #results
-    .result
-      .source Imabi
-      .title
-        a-link Title
-    .result
-      .source Tae Kim
-      .title
-        a-link Title
-    .result
-      .source Bunpou
-      .title
-        a-link Title
-    a-btn.show-all
-      a-link Show all
+    #list
+      .result
+        .source
+          a-link(block center) Imabi
+        .title
+          a-link(block vcenter) Title
+      .result
+        .source
+          a-link(block center) Tae Kim
+        .title
+          a-link(block vcenter) Title
+      .result
+        .source
+          a-link(block center) Bunpou
+        .title
+          a-link(block vcenter) Title
+    a-btn(inner-padding solid)#show-all
+      a-link(block center) Show all
