@@ -72,33 +72,7 @@ class SearchMolecula extends Component {
       callback([])
     }
 
-    /*
-    const results: SearchResults = []
-
-    fetch(`https://google-search3.p.rapidapi.com/api/v1/search/q=${encodeURIComponent(querry)}+site%253Awww.imabi.net+%7C+site%253Awww.guidetojapanese.org+%7C+site%253Awww.bunpou.github.io`, {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-key": "1b2764380bmsh5f3b93446957eaap11524fjsnf6db5ff591b2",
-        "x-rapidapi-host": "google-search3.p.rapidapi.com"
-      }
-    })
-    .then(response => response.json())
-    .then((data: {results: []}) => {
-      data.results.forEach((result: {title: string, link: string}) => {
-        results.push({
-          source: 'test',
-          title: result.title,
-          link:  result.link
-        })
-      })
-    })
-    .catch(error => {
-      console.log(error)
-      console.log('Google API limit is reached I guess :c');
-    })
-
-    callback(results)
-    */
+    // Create MongoDB with all the info and use local search
   }
 
   addResults (results: SearchResults) {
