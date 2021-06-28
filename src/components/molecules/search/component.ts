@@ -1,11 +1,12 @@
 import Component from 'Components/component'
 import {PageTree, TreeElement} from 'Scripts/page-tree'
+import ALink from 'Atoms/link/component'
 
 
 interface SearchResult {
   source: string,
   title: string,
-  url: string
+  link: string
 }
 type SearchResults = SearchResult[]
 
@@ -13,27 +14,83 @@ type SearchResults = SearchResult[]
 @Component.load(require('./index.pug'), require('./styles.sass'))
 class SearchMolecula extends Component {
   connectedCallback () {
-    this.search('verbs', console.log)
+    const input = this.shadow.querySelector('#input')
+
+    input.addEventListener('input', this.onInputChange.bind(this))
+    input.addEventListener('focusin', this.onInputChange.bind(this))
+    this.addEventListener('focusout', this.onInputFocusOut.bind(this))
   }
 
   render () {
     return this.loadedHTML({})
   }
 
+  onInputChange (event: {target: {value: string}}) {
+    const querry = event.target.value
+    
+    this.clearSearchResults()
+
+    if (querry !== '') {
+      this.search(querry, (results: SearchResults) => {
+        if (results.length !== 0) {
+          this.addResults(results)
+          this.showResults()
+        } else {
+          this.hideResults()
+        }
+      })
+    } else {
+      this.hideResults()
+    }
+  }
+
+  onInputFocusOut (_: Event) {
+    this.clearSearchResults()
+    this.hideResults()
+  }
+
   search (querry: string, callback: Function) {
+    if (querry === 'verbs') {
+      callback([
+        {
+          source: 'Imabi',
+          title: '- Regular Verbs I - IMABI!',
+          link: 'https://www.imabi.net/regularverbsi.htm'
+        },
+        {
+          source: 'Tae Kim',
+          title: 'Verb Basics – Learn Japanese',
+          link: 'http://www.guidetojapanese.org/learn/grammar/verbs'
+        },
+        {
+          source: 'Bunpou',
+          title: 'Verbs',
+          link: 'cheatsheets/verbs'
+        },
+      ])
+    } else {
+      callback([])
+    }
+
+    /*
     const results: SearchResults = []
 
-    // TODO Add other sites in querry
-    fetch("https://google-search3.p.rapidapi.com/api/v1/search/q=%253Asite+www.imabi.net+verbs&sxsrf=ALeKk003_zOL3DXLDyKkVLQARsDERXgJhQ%253A1624799481210&source=hp&ei=-XjYYL_jCsXIgQaVxp2IAg&iflsig=AINFCbYAAAAAYNiHCVIVChlEFvsE6OIsjW_KVo5SZEce&oq=%253Asite+www.imabi.net+verbs&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECc6BwgjEOoCECdQvwdYvwdg6wloAXAAeACAAXKIAXKSAQMwLjGYAQCgAQKgAQGqAQdnd3Mtd2l6sAEK&sclient=gws-wiz&ved=0ahUKEwj_w6Df8bfxAhVFZMAKHRVjByEQ4dUDCAc&uact=5", {
+    fetch(`https://google-search3.p.rapidapi.com/api/v1/search/q=${encodeURIComponent(querry)}+site%253Awww.imabi.net+%7C+site%253Awww.guidetojapanese.org+%7C+site%253Awww.bunpou.github.io`, {
       "method": "GET",
       "headers": {
-        "x-rapidapi-key": "a7567f45d9msh257ea58e39fe872p1a4fcfjsnc14e05822496",
+        "x-rapidapi-key": "1b2764380bmsh5f3b93446957eaap11524fjsnf6db5ff591b2",
         "x-rapidapi-host": "google-search3.p.rapidapi.com"
       }
     })
     .then(response => response.json())
-    .then(data => {
-      console.log(data)
+    .then((data: {results: []}) => {
+      data.results.forEach((result: {title: string, link: string}) => {
+        results.push({
+          source: 'test',
+          title: result.title,
+          link:  result.link
+        })
+      })
     })
     .catch(error => {
       console.log(error)
@@ -41,6 +98,53 @@ class SearchMolecula extends Component {
     })
 
     callback(results)
+    */
+  }
+
+  addResults (results: SearchResults) {
+    const list = this.shadow.querySelector('#list')
+
+    const createLink = (url: string, text: string, isLocal: boolean = false, isCenter: boolean = false): ALink => {
+      const link = document.createElement('a-link') as ALink
+      
+      link.setAttribute(isLocal ? 'to' : 'href', url)
+      
+      link.setAttribute('block', '')
+      if (isCenter) link.setAttribute('center', '')
+      link.updateContent(text)
+
+      return link
+    }
+
+    results.forEach((result: SearchResult) => {
+      const resultElement = document.createElement('div')
+      resultElement.classList.add('result')
+      list.appendChild(resultElement)
+
+      const sourceElement = document.createElement('div')
+      sourceElement.classList.add('source')
+      sourceElement.appendChild(createLink(result.link, result.source, result.source === 'Bunpou', true))
+      resultElement.appendChild(sourceElement)
+
+      const titleElement = document.createElement('div')
+      titleElement.classList.add('title')
+      titleElement.appendChild(createLink(result.link, result.title, result.source === 'Bunpou'))
+      resultElement.appendChild(titleElement)
+    })
+  }
+
+  clearSearchResults () {
+    this.shadow.querySelector('#list').innerHTML = ''
+  }
+
+  showResults () {
+    const results = this.shadow.querySelector('#results') as HTMLElement
+    results.style.display = 'flex'
+  }
+
+  hideResults () {
+    const results = this.shadow.querySelector('#results') as HTMLElement
+    results.style.display = 'none'
   }
 
   searchInBunpou (searchText: string): SearchResults {
@@ -53,7 +157,7 @@ class SearchMolecula extends Component {
       results.push({
         source: 'Bunpou',
         title: treeElement.title,
-        url: PageTree.buildPathFromName(treeElement.name)
+        link: PageTree.buildPathFromName(treeElement.name)
       })
     })
 
