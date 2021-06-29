@@ -39,6 +39,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "flexsearch": "^0.7.11",
     "query-selector-shadow-dom": "^1.0.0"
   }
 }
