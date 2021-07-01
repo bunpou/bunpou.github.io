@@ -1,40 +1,127 @@
 @import theme
 @import globals
 
-  
+
+$search-height: 45px
+
+
 :host
   width: 100%
-  height: 58px
   box-sizing: border-box
   padding: 10px 0
 
   #search
-    display: flex
-    align-items: center
+    position: relative
+
     width: 100%
     height: 100%
-    min-width: 0
 
-    border-width: 0 0 1px 0
-    border-style: solid
-    border-color: $primary-color
-
-    &:focus-within
-      border-color: $accent-color
-  
-    #icon
-      width: 30px
-      padding: 8px
+    #bar
+      display: flex
+      align-items: center
+      width: 100%
+      min-width: 0
+      height: $search-height
       box-sizing: border-box
 
-    #input
-      flex-grow: 1
-      height: 100%
+      border-width: 0 0 1px 0
+      border-style: solid
+      border-color: $primary-color
 
+      &:focus-within
+        border-color: $accent-color
+    
+      #icon
+        width: 30px
+        padding: 8px
+        box-sizing: border-box
+
+      #input
+        flex-grow: 1
+        height: 100%
+
+        box-sizing: border-box
+        border: none
+        outline: none
+
+        background-color: $background-color
+        color: $text-color
+
+    #results
+      position: absolute
+      top: $search-height + 10px
+      left: 0
+      z-index: 1
+
+      display: none
+      flex-direction: column
+      width: 100%
+
+      padding: 0 5px 5px 5px
       box-sizing: border-box
-      border: none
-      outline: none
 
       background-color: $background-color
-      color: $text-color
+      border: 1px solid $text-color
+      border-top: 0
+
+      &.display
+        display: flex
+
+      #list
+        display: grid
+        gap: 10px
+        width: 100%
+
+        .result
+          display: flex
+
+          height: 100%
+          box-sizing: border-box
+
+          cursor: pointer
+
+          .source
+            display: flex
+            justify-content: center
+            align-items: center
+
+            min-width: 85px
+            height: 100%
+            box-sizing: border-box
+
+            color: $text-color
+            background-color: $accent-color
+            border: 1px solid $accent-color
+
+          .title
+            display: flex
+            align-items: center
+            flex-grow: 1
+            box-sizing: border-box
+            
+            background-color: $text-color
+            color: $background-color
+          
+          .source, .title
+            a-link
+              height: 100%
+              padding: 5px
+              box-sizing: border-box
+
+          &:hover > .title
+            border: 1px solid $accent-color
+            border-left: 0
+            background-color: $background-color
+            color: $text-color
+
+      #show-all
+        display: none
+        justify-content: center
+        align-items: center
+
+        margin-top: 10px
+        padding: 0
+      
+      #show-all.display
+        display: flex
         

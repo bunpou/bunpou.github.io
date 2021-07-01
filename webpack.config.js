@@ -179,6 +179,7 @@ module.exports = {
       Scripts: path.join(PATHS.src, 'scripts/'),
       Styles: path.join(PATHS.src, 'styles/'),
       Assets: path.join(PATHS.src, 'assets/'),
+      Node: path.resolve(__dirname, 'node_modules/'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },

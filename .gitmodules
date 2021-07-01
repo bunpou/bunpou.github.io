@@ -1,0 +1,3 @@
+[submodule "japanese-grammar-db"]
+	path = japanese-grammar-db
+	url = https://github.com/bunpou/japanese-grammar-db

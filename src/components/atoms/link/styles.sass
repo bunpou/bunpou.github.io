@@ -17,12 +17,18 @@
   a:active
     color: $accent-color
     cursor: pointer
-      
+
+
+:host([no-hl])
+  a:hover,
+  a:active
+    color: inherit
   
 :host([block])
   width: 100%
   height: 100%
   display: block
+  box-sizing: border-box
 
   a
     display: block
@@ -31,4 +37,15 @@
   
   a:hover,
   a:active
-    color: $primary-color
+    color: inherit
+
+:host([center])
+  a
+    display: flex
+    justify-content: center
+    align-items: center
+
+:host([vcenter])
+  a
+    display: flex
+    align-items: center

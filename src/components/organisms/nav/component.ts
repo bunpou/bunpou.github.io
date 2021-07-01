@@ -12,14 +12,14 @@ class NavOrganism extends Component {
 
 
   connectedCallback () {
-    this.buildFromTree(this.shadow.querySelector('nav'), PageTree.tree)
+    this.buildFromTree(this.shadow.querySelector('nav'), PageTree.tree, document.location.pathname.slice(1).split('/'))
   }
 
-  buildFromTree (root: HTMLElement, tree: Tree) {
+  buildFromTree (root: HTMLElement, tree: Tree, activeItemPath: string[] = null) {
     tree.forEach((treeElement) => {
-      const isFold = treeElement.hasOwnProperty('children')
+      const isFold = PageTree.isFold(treeElement)
 
-      const navItem = this.buildNavItem(isFold, treeElement)
+      const navItem = this.buildNavItem(isFold, treeElement, activeItemPath)
 
       root.appendChild(navItem)
 
@@ -32,9 +32,19 @@ class NavOrganism extends Component {
     })
   }
 
-  buildNavItem (isFold: boolean, treeElement: Page|Fold) {
+  buildNavItem (isFold: boolean, treeElement: Page|Fold, activeItemPath: string[]) {
     const navItem = document.createElement('div')
     navItem.classList.add(isFold ? 'fold' : 'page')
+
+    if (activeItemPath[0] == treeElement.name) {
+      if (isFold) {
+        navItem.classList.add('open')
+      } else {
+        navItem.classList.add('active')
+        this.activeNavItem = navItem
+      }
+      
+    }
 
     const title = this.buildNavItemTitle(isFold, treeElement)
     navItem.appendChild(title)
@@ -58,7 +68,7 @@ class NavOrganism extends Component {
     }
     
     if (isFold) {
-      const accordeon = this.buildNavItemAccordeon.bind(this)(treeElement)
+      const accordeon = this.buildNavItemAccordeon(treeElement, activeItemPath)
       navItem.appendChild(accordeon)
     }
 
@@ -90,7 +100,7 @@ class NavOrganism extends Component {
     const link = document.createElement('a-link') as LinkAtom
     link.setAttribute('block', '')
     if (!isFold) {
-      const path = PageTree.buildPathFromName(PageTree.tree, treeElement.name)
+      const path = PageTree.buildPathFromName(treeElement.name)
       link.setAttribute('to', path)
     }
     link.innerHTML = treeElement.title
@@ -99,10 +109,10 @@ class NavOrganism extends Component {
     return link
   }
 
-  buildNavItemAccordeon (treeElement: Page|Fold): HTMLElement {
+  buildNavItemAccordeon (treeElement: Page|Fold, activeItemPath: string[]): HTMLElement {
     const accordeon = document.createElement('div')
     accordeon.classList.add('accordeon')
-    this.buildFromTree(accordeon, (<Fold>treeElement).children)
+    this.buildFromTree(accordeon, (<Fold>treeElement).children, activeItemPath.slice(1))
 
     return accordeon
   }
