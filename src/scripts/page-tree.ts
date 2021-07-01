@@ -125,8 +125,4 @@ export class PageTree {
 
     return null
   }
-
-  static searchAll(searchText: string, root: Tree = PageTree.tree): TreeElement[] {
-    throw 'PageTree.searchAll is not implemented'
-  }
 }
