@@ -2,6 +2,8 @@ import Component from 'Components/component'
 import {PageTree, TreeElement} from 'Scripts/page-tree'
 import ALink from 'Atoms/link/component'
 
+import DB from 'Scripts/db'
+
 
 interface SearchResult {
   source: string,
@@ -50,29 +52,7 @@ class SearchMolecula extends Component {
   }
 
   search (querry: string, callback: Function) {
-    if (querry === 'verbs') {
-      callback([
-        {
-          source: 'Imabi',
-          title: '- Regular Verbs I - IMABI!',
-          link: 'https://www.imabi.net/regularverbsi.htm'
-        },
-        {
-          source: 'Tae Kim',
-          title: 'Verb Basics – Learn Japanese',
-          link: 'http://www.guidetojapanese.org/learn/grammar/verbs'
-        },
-        {
-          source: 'Bunpou',
-          title: 'Verbs',
-          link: 'cheatsheets/verbs'
-        },
-      ])
-    } else {
-      callback([])
-    }
-
-    // Create MongoDB with all the info and use local search
+    callback(DB.search(querry, 5, ['title']))
   }
 
   addResults (results: SearchResults) {
